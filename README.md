@@ -1,24 +1,24 @@
 <p align="center">
-    <a href="https://www.mangoweb.cz/en/" target="_blank">
-        <img src="https://avatars0.githubusercontent.com/u/38423357?s=200&v=4"/>
+    <a href="https://www.3brs.com" target="_blank">
+        <img src="https://3brs1.fra1.cdn.digitaloceanspaces.com/3brs/logo/3BRS-logo-sylius-200.png"/>
     </a>
 </p>
 <h1 align="center">
     Zásilkovna Plugin
     <br />
-    <a href="https://packagist.org/packages/mangoweb-sylius/sylius-zasilkovna-plugin" title="License" target="_blank">
-        <img src="https://img.shields.io/packagist/l/mangoweb-sylius/sylius-zasilkovna-plugin.svg" />
+    <a href="https://packagist.org/packages/3brs/sylius-zasilkovna-plugin" title="License" target="_blank">
+        <img src="https://img.shields.io/packagist/l/3brs/sylius-zasilkovna-plugin.svg" />
     </a>
-    <a href="https://packagist.org/packages/mangoweb-sylius/sylius-zasilkovna-plugin" title="Version" target="_blank">
-        <img src="https://img.shields.io/packagist/v/mangoweb-sylius/sylius-zasilkovna-plugin.svg" />
+    <a href="https://packagist.org/packages/3brs/sylius-zasilkovna-plugin" title="Version" target="_blank">
+        <img src="https://img.shields.io/packagist/v/3brs/sylius-zasilkovna-plugin.svg" />
     </a>
-    <a href="https://travis-ci.org/mangoweb-sylius/SyliusZasilkovnaPlugin" title="Build status" target="_blank">
-        <img src="https://img.shields.io/travis/mangoweb-sylius/SyliusZasilkovnaPlugin/master.svg" />
+    <a href="https://travis-ci.com/3brs/sylius-zasilkovna-plugin" title="Build status" target="_blank">
+        <img src="https://img.shields.io/travis/com/3BRS/sylius-zasilkovna-plugin" />
     </a>
 </h1>
 
 <p align="center">
-	<a href="https://www.zasilkovna.cz"><img src="https://raw.githubusercontent.com/mangoweb-sylius/SyliusZasilkovnaPlugin/master/doc/logo.png" alt="Zásilkovna / Zásielkovňa / Csomagküldő / Przesyłkownia / Coletăria"/></a>
+	<a href="https://www.zasilkovna.cz"><img src="https://raw.githubusercontent.com/3BRS/sylius-zasilkovna-plugin/master/doc/logo.png" alt="Zásilkovna / Zásielkovňa / Csomagküldő / Przesyłkownia / Coletăria"/></a>
 </p>
 
 ## Features
@@ -29,16 +29,16 @@
  - Export CSV with the Zásilkovna shipments (both to Zasilkovna branch or customer's address) and import it easily into Zásilkovna's system.
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/mangoweb-sylius/SyliusZasilkovnaPlugin/master/doc/admin_order_detail.png"/>
+	<img src="https://raw.githubusercontent.com/3BRS/sylius-zasilkovna-plugin/master/doc/admin_order_detail.png"/>
 </p>
 <p align="center">
-	<img src="https://raw.githubusercontent.com/mangoweb-sylius/SyliusZasilkovnaPlugin/master/doc/admin_shipping_method_edit.png"/>
+	<img src="https://raw.githubusercontent.com/3BRS/sylius-zasilkovna-plugin/master/doc/admin_shipping_method_edit.png"/>
 </p>
 <p align="center">
-	<img src="https://raw.githubusercontent.com/mangoweb-sylius/SyliusZasilkovnaPlugin/master/doc/shop_shipment_step.png"/>
+	<img src="https://raw.githubusercontent.com/3BRS/sylius-zasilkovna-plugin/master/doc/shop_shipment_step.png"/>
 </p>
 <p align="center">
-	<img src="https://raw.githubusercontent.com/mangoweb-sylius/SyliusZasilkovnaPlugin/master/doc/shop_checkout_complete.png"/>
+	<img src="https://raw.githubusercontent.com/3BRS/sylius-zasilkovna-plugin/master/doc/shop_checkout_complete.png"/>
 </p>
 
 ## Installation
@@ -196,4 +196,5 @@ This library is under the MIT license.
 
 Credits
 -------
-Developed by [manGoweb](https://www.mangoweb.eu/).
+Developed by [3BRS](https://3brs.com)<br>
+Forked from [manGoweb](https://github.com/mangoweb-sylius/SyliusZasilkovnaPlugin).
