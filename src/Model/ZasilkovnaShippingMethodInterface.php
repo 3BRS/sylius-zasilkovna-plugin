@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace MangoSylius\SyliusZasilkovnaPlugin\Model;
+namespace ThreeBRS\SyliusZasilkovnaPlugin\Model;
 
-use MangoSylius\SyliusZasilkovnaPlugin\Entity\ZasilkovnaConfigInterface;
+use ThreeBRS\SyliusZasilkovnaPlugin\Entity\ZasilkovnaConfigInterface;
 
 interface ZasilkovnaShippingMethodInterface
 {

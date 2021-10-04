@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MangoSylius\SyliusZasilkovnaPlugin\Entity;
+namespace ThreeBRS\SyliusZasilkovnaPlugin\Entity;
 
 interface ZasilkovnaConfigInterface
 {

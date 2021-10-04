@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Symfony\Component\ErrorHandler\Debug;
 use Symfony\Component\HttpFoundation\Request;
-use Tests\MangoSylius\SyliusZasilkovnaPlugin\Application\Kernel;
+use Tests\ThreeBRS\SyliusZasilkovnaPlugin\Application\Kernel;
 
 require dirname(__DIR__) . '/config/bootstrap.php';
 

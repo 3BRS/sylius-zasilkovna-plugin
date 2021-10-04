@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Tests\MangoSylius\SyliusZasilkovnaPlugin\Application\Entity;
+namespace Tests\ThreeBRS\SyliusZasilkovnaPlugin\Application\Entity;
 
 use Doctrine\ORM\Mapping\MappedSuperclass;
 use Doctrine\ORM\Mapping\Table;
-use MangoSylius\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentInterface;
-use MangoSylius\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentTrait;
 use Sylius\Component\Core\Model\Shipment as BaseShipment;
+use ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentInterface;
+use ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentTrait;
 
 /**
  * @MappedSuperclass

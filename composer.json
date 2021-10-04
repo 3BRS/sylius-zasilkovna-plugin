@@ -46,8 +46,8 @@
 	"prefer-stable": true,
 	"autoload": {
 		"psr-4": {
-			"MangoSylius\\SyliusZasilkovnaPlugin\\": "src/",
-			"Tests\\MangoSylius\\SyliusZasilkovnaPlugin\\": "tests/"
+			"ThreeBRS\\SyliusZasilkovnaPlugin\\": "src/",
+			"Tests\\ThreeBRS\\SyliusZasilkovnaPlugin\\": "tests/"
 		}
 	},
 	"autoload-dev": {

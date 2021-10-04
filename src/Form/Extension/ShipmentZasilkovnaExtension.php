@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace MangoSylius\SyliusZasilkovnaPlugin\Form\Extension;
+namespace ThreeBRS\SyliusZasilkovnaPlugin\Form\Extension;
 
-use MangoSylius\SyliusZasilkovnaPlugin\Model\ZasilkovnaShippingMethodInterface;
 use Sylius\Bundle\CoreBundle\Form\Type\Checkout\ShipmentType;
 use Sylius\Component\Core\Model\ShippingMethodInterface;
 use Sylius\Component\Core\Repository\ShippingMethodRepositoryInterface;
@@ -17,6 +16,7 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShippingMethodInterface;
 
 class ShipmentZasilkovnaExtension extends AbstractTypeExtension
 {
@@ -67,7 +67,7 @@ class ShipmentZasilkovnaExtension extends AbstractTypeExtension
                 // validation
                 $data = $event->getData();
                 if (array_key_exists('zasilkovna_' . $data['method'], $data) && !((bool) $orderData['zasilkovna_' . $orderData['method']])) {
-                    $event->getForm()->addError(new FormError($this->translator->trans('mangoweb.shop.checkout.zasilkovnaBranch', [], 'validators')));
+                    $event->getForm()->addError(new FormError($this->translator->trans('threebrs.shop.checkout.zasilkovnaBranch', [], 'validators')));
                 }
             })
             ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {

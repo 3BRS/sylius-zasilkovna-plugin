@@ -49,8 +49,8 @@
    ```php
    return [
       ...
-      MangoSylius\ShipmentExportPlugin\MangoSyliusShipmentExportPlugin::class => ['all' => true],
-      MangoSylius\SyliusZasilkovnaPlugin\MangoSyliusZasilkovnaPlugin::class => ['all' => true],
+      ThreeBRS\ShipmentExportPlugin\MangoSyliusShipmentExportPlugin::class => ['all' => true],
+      ThreeBRS\SyliusZasilkovnaPlugin\MangoSyliusZasilkovnaPlugin::class => ['all' => true],
    ];
    ```
   
@@ -168,6 +168,11 @@ For the guide how to use your own entity see [Sylius docs - Customizing Models](
   ```
   You should add to this array both methods for shipping to Zasilkovna branch and also to customer's address via Zasilkovna service.
 * Packeta API documentation: https://docs.packetery.com/03-creating-packets/01-csv-import.html
+* You can expand the list of countries by the parameter
+  ```yaml
+  parameters:
+    threebrs_sylius_zasilkovna_plugin_payment_methods: ['cz', 'pl', 'sk', 'hu', 'ro']
+  ```
 
 
 ## Development

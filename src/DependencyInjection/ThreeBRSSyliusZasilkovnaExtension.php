@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace MangoSylius\SyliusZasilkovnaPlugin\DependencyInjection;
+namespace ThreeBRS\SyliusZasilkovnaPlugin\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
-class MangoSyliusZasilkovnaExtension extends Extension
+class ThreeBRSSyliusZasilkovnaExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container): void
     {

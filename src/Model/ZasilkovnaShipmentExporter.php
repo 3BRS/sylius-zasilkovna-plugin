@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MangoSylius\SyliusZasilkovnaPlugin\Model;
+namespace ThreeBRS\SyliusZasilkovnaPlugin\Model;
 
 use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Core\Model\PaymentInterface;

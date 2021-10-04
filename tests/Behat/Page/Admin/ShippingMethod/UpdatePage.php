@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\MangoSylius\SyliusZasilkovnaPlugin\Behat\Page\Admin\ShippingMethod;
+namespace Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Page\Admin\ShippingMethod;
 
 use Behat\Mink\Element\NodeElement;
 use Sylius\Behat\Page\Admin\Channel\UpdatePage as BaseUpdatePage;

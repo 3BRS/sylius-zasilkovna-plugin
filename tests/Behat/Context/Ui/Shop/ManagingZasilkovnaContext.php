@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\MangoSylius\SyliusZasilkovnaPlugin\Behat\Context\Ui\Shop;
+namespace Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Context\Ui\Shop;
 
 use Behat\Behat\Context\Context;
 use FriendsOfBehat\PageObjectExtension\Page\UnexpectedPageException;
 use Sylius\Behat\Context\Ui\Shop\Checkout\CheckoutShippingContext;
-use Tests\MangoSylius\SyliusZasilkovnaPlugin\Behat\Page\Shop\Zasilkovna\ZasilkovnaPagesInterface;
+use Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Page\Shop\Zasilkovna\ZasilkovnaPagesInterface;
 use Webmozart\Assert\Assert;
 
 final class ManagingZasilkovnaContext implements Context

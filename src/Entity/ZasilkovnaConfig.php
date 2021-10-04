@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace MangoSylius\SyliusZasilkovnaPlugin\Entity;
+namespace ThreeBRS\SyliusZasilkovnaPlugin\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
 /**
- * @ORM\Table(name="mango_zasilkovna_config")
+ * @ORM\Table(name="threebrs_zasilkovna_config")
  * @ORM\Entity
  */
 class ZasilkovnaConfig implements ResourceInterface, ZasilkovnaConfigInterface

@@ -7,7 +7,7 @@ imports:
 
     - { resource: "@SyliusApiBundle/Resources/config/app/config.yaml" }
 
-    - { resource: "@MangoSyliusZasilkovnaPlugin/Resources/config/resources.yml" }
+    - { resource: "@ThreeBRSSyliusZasilkovnaPlugin/Resources/config/resources.yml" }
 
 parameters:
     sylius_core.public_dir: '%kernel.project_dir%/public'
@@ -20,7 +20,7 @@ sylius_shipping:
     resources:
         shipment:
             classes:
-                model: Tests\MangoSylius\SyliusZasilkovnaPlugin\Application\Entity\Shipment
+                model: Tests\ThreeBRS\SyliusZasilkovnaPlugin\Application\Entity\Shipment
         shipping_method:
             classes:
-                model: Tests\MangoSylius\SyliusZasilkovnaPlugin\Application\Entity\ShippingMethod
+                model: Tests\ThreeBRS\SyliusZasilkovnaPlugin\Application\Entity\ShippingMethod

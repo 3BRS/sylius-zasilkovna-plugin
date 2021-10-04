@@ -55,6 +55,6 @@ return [
     Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle::class => ['all' => true],
     Sylius\Bundle\ApiBundle\SyliusApiBundle::class => ['all' => true],
     SyliusLabs\DoctrineMigrationsExtraBundle\SyliusLabsDoctrineMigrationsExtraBundle::class => ['all' => true],
-    MangoSylius\SyliusZasilkovnaPlugin\MangoSyliusZasilkovnaPlugin::class => ['all' => true],
+    ThreeBRS\SyliusZasilkovnaPlugin\ThreeBRSSyliusZasilkovnaPlugin::class => ['all' => true],
     ThreeBRS\SyliusShipmentExportPlugin\ThreeBRSSyliusShipmentExportPlugin::class => ['all' => true],
 ];

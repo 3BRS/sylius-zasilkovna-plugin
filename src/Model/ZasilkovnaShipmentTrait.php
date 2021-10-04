@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MangoSylius\SyliusZasilkovnaPlugin\Model;
+namespace ThreeBRS\SyliusZasilkovnaPlugin\Model;
 
 use Doctrine\ORM\Mapping as ORM;
 

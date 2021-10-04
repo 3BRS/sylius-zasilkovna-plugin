@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tests\MangoSylius\SyliusZasilkovnaPlugin\Behat\Context\Ui\Admin;
+namespace Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Context\Ui\Admin;
 
 use Behat\Behat\Context\Context;
 use Sylius\Behat\Service\NotificationCheckerInterface;
-use Tests\MangoSylius\SyliusZasilkovnaPlugin\Behat\Page\Admin\ShippingMethod\UpdatePageInterface;
+use Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Page\Admin\ShippingMethod\UpdatePageInterface;
 use Webmozart\Assert\Assert;
 
 final class ManagingShippingMethodContext implements Context
