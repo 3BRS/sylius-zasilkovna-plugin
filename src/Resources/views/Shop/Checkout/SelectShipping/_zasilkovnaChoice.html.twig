@@ -29,4 +29,6 @@
 	{{ form_widget(form.parent.parent['zasilkovna_' ~ method.code]) }}
 {% endif %}
 
-{{ form_widget(form.parent.parent.zasilkovna) }}
+{% if not form.parent.parent.zasilkovna.isRendered %}
+	{{ form_widget(form.parent.parent.zasilkovna) }}
+{% endif %}

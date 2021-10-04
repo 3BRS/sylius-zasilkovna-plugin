@@ -11,17 +11,17 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class AdminZasilkovnaShippingMethodExtension extends AbstractTypeExtension
 {
-	/** @param array<mixed> $options */
-	public function buildForm(FormBuilderInterface $builder, array $options): void
-	{
-		$builder->add('zasilkovnaConfig', ZasilkovnaConfigType::class);
-	}
+    /** @param array<mixed> $options */
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder->add('zasilkovnaConfig', ZasilkovnaConfigType::class);
+    }
 
-	/** @return array<string> */
-	public static function getExtendedTypes(): array
-	{
-		return [
-			ShippingMethodType::class,
-		];
-	}
+    /** @return array<string> */
+    public static function getExtendedTypes(): array
+    {
+        return [
+            ShippingMethodType::class,
+        ];
+    }
 }

@@ -15,50 +15,50 @@ use Sylius\Component\Core\Model\ShippingMethodInterface;
 
 final class ShippingMethodContext implements Context
 {
-	/** @var EntityManagerInterface */
-	private $entityManager;
+    /** @var EntityManagerInterface */
+    private $entityManager;
 
-	/** @var SharedStorageInterface */
-	private $sharedStorage;
+    /** @var SharedStorageInterface */
+    private $sharedStorage;
 
-	public function __construct(
-		EntityManagerInterface $entityManager,
-		SharedStorageInterface $sharedStorage
-	) {
-		$this->entityManager = $entityManager;
-		$this->sharedStorage = $sharedStorage;
-	}
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        SharedStorageInterface $sharedStorage
+    ) {
+        $this->entityManager = $entityManager;
+        $this->sharedStorage = $sharedStorage;
+    }
 
-	/**
-	 * @Given /^(this shipping method) has Zásilkovna api key$/
-	 */
-	public function thisPaymentMethodHasZone(ShippingMethodInterface $shippingMethod)
-	{
-		assert($shippingMethod instanceof ZasilkovnaShippingMethodInterface);
+    /**
+     * @Given /^(this shipping method) has Zásilkovna api key$/
+     */
+    public function thisPaymentMethodHasZone(ShippingMethodInterface $shippingMethod)
+    {
+        assert($shippingMethod instanceof ZasilkovnaShippingMethodInterface);
 
-		$zasilkovnaConfig = new ZasilkovnaConfig();
-		$zasilkovnaConfig->setApiKey('zasilkovnaApiKeyFolder');
+        $zasilkovnaConfig = new ZasilkovnaConfig();
+        $zasilkovnaConfig->setApiKey('zasilkovnaApiKeyFolder');
 
-		$shippingMethod->setZasilkovnaConfig($zasilkovnaConfig);
+        $shippingMethod->setZasilkovnaConfig($zasilkovnaConfig);
 
-		$this->entityManager->persist($shippingMethod);
-		$this->entityManager->flush();
-	}
+        $this->entityManager->persist($shippingMethod);
+        $this->entityManager->flush();
+    }
 
-	/**
-	 * @Given choose Zásilkovna branch ":zasilkovnaName"
-	 */
-	public function chooseZasilkovnaBranch(string $zasilkovnaName)
-	{
-		$order = $this->sharedStorage->get('order');
-		assert($order instanceof OrderInterface);
+    /**
+     * @Given choose Zásilkovna branch ":zasilkovnaName"
+     */
+    public function chooseZasilkovnaBranch(string $zasilkovnaName)
+    {
+        $order = $this->sharedStorage->get('order');
+        assert($order instanceof OrderInterface);
 
-		$shipment = $order->getShipments()->last();
-		assert($shipment instanceof ZasilkovnaShipmentInterface);
+        $shipment = $order->getShipments()->last();
+        assert($shipment instanceof ZasilkovnaShipmentInterface);
 
-		$shipment->setZasilkovna(['id' => 1, 'place' => $zasilkovnaName]);
+        $shipment->setZasilkovna(['id' => 1, 'place' => $zasilkovnaName]);
 
-		$this->entityManager->persist($order);
-		$this->entityManager->flush();
-	}
+        $this->entityManager->persist($order);
+        $this->entityManager->flush();
+    }
 }

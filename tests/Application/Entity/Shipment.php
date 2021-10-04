@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\MangoSylius\SyliusZasilkovnaPlugin\Application\src\Entity\Shipping;
+namespace Tests\MangoSylius\SyliusZasilkovnaPlugin\Application\Entity;
 
 use Doctrine\ORM\Mapping\MappedSuperclass;
 use Doctrine\ORM\Mapping\Table;
@@ -16,5 +16,5 @@ use Sylius\Component\Core\Model\Shipment as BaseShipment;
  */
 class Shipment extends BaseShipment implements ZasilkovnaShipmentInterface
 {
-	use ZasilkovnaShipmentTrait;
+    use ZasilkovnaShipmentTrait;
 }

@@ -9,5 +9,5 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 interface ZasilkovnaConfigRepositoryInterface extends RepositoryInterface
 {
-	public function findOneEnabled(): ?ZasilkovnaConfigInterface;
+    public function findOneEnabled(): ?ZasilkovnaConfigInterface;
 }

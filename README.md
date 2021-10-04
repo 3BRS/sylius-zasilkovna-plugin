@@ -12,8 +12,8 @@
     <a href="https://packagist.org/packages/3brs/sylius-zasilkovna-plugin" title="Version" target="_blank">
         <img src="https://img.shields.io/packagist/v/3brs/sylius-zasilkovna-plugin.svg" />
     </a>
-    <a href="https://travis-ci.com/3brs/sylius-zasilkovna-plugin" title="Build status" target="_blank">
-        <img src="https://img.shields.io/travis/com/3BRS/sylius-zasilkovna-plugin" />
+    <a href="https://circleci.com/gh/3BRS/sylius-zasilkovna-plugin" title="Build status" target="_blank">
+        <img src="https://circleci.com/gh/3BRS/sylius-zasilkovna-plugin.svg?style=shield" />
     </a>
 </h1>
 

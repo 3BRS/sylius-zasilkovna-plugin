@@ -8,7 +8,7 @@ use Sylius\Behat\Page\Admin\Channel\UpdatePageInterface as BaseUpdatePageInterfa
 
 interface ZasilkovnaPagesInterface extends BaseUpdatePageInterface
 {
-	public function selectZasilkovnaBranch(array $zasilkovna): void;
+    public function selectZasilkovnaBranch(array $zasilkovna): void;
 
-	public function iSeeZasilkovnaBranchInsteadOfShippingAddress(): bool;
+    public function iSeeZasilkovnaBranchInsteadOfShippingAddress(): bool;
 }

@@ -8,7 +8,7 @@ use MangoSylius\SyliusZasilkovnaPlugin\Entity\ZasilkovnaConfigInterface;
 
 interface ZasilkovnaShippingMethodInterface
 {
-	public function getZasilkovnaConfig(): ?ZasilkovnaConfigInterface;
+    public function getZasilkovnaConfig(): ?ZasilkovnaConfigInterface;
 
-	public function setZasilkovnaConfig(?ZasilkovnaConfigInterface $zasilkovnaConfig): void;
+    public function setZasilkovnaConfig(?ZasilkovnaConfigInterface $zasilkovnaConfig): void;
 }

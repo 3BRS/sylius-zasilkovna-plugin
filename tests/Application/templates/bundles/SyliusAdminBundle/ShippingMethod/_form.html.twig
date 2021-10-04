@@ -12,7 +12,7 @@
 			{{ form_row(form.enabled) }}
 			<h4 class="ui dividing header">{{ 'sylius.ui.availability'|trans }}</h4>
 			{{ form_row(form.channels) }}
-			{{ include('MangoSyliusZasilkovnaPlugin:Admin/ShippingMethod:_zasilkovnaForm.html.twig') }}
+			{{ include('@MangoSyliusZasilkovnaPlugin/Admin/ShippingMethod/_zasilkovnaForm.html.twig') }}
 			<h4 class="ui dividing header">{{ 'sylius.ui.category_requirements'|trans }}</h4>
 			{{ form_row(form.category) }}
 			{% for categoryRequirementChoiceForm in form.categoryRequirement %}
