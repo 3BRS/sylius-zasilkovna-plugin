@@ -43,14 +43,14 @@
 
 ## Installation
 
-1. Run `$ composer require mangoweb-sylius/sylius-zasilkovna-plugin`.
+1. Run `$ composer require 3brs/sylius-zasilkovna-plugin`.
 1. Add plugin classes to your `config/bundles.php`:
  
    ```php
    return [
       ...
       ThreeBRS\ShipmentExportPlugin\ThreeBRSSyliusShipmentExportPlugin::class => ['all' => true],
-      ThreeBRS\SyliusZasilkovnaPlugin\MangoSyliusZasilkovnaPlugin::class => ['all' => true],
+      ThreeBRS\SyliusZasilkovnaPlugin\ThreeBRSSyliusZasilkovnaPlugin::class => ['all' => true],
    ];
    ```
   
@@ -60,7 +60,7 @@
     imports:
          ...
          ...
-         - { resource: "@MangoSyliusZasilkovnaPlugin/Resources/config/resources.yml" }
+         - { resource: "@ThreeBRSSyliusZasilkovnaPlugin/Resources/config/resources.yml" }
     ```
    
 1. Add routing to `config/_routes.yaml`
@@ -121,23 +121,23 @@
    }
    ```
 
-1. Include `@MangoSyliusZasilkovnaPlugin/Admin/ShippingMethod/:zasilkovnaForm.html.twig` into `@SyliusAdmin/ShippingMethod/_form.html.twig`.
+1. Include `@ThreeBRSSyliusZasilkovnaPlugin/Admin/ShippingMethod/:zasilkovnaForm.html.twig` into `@SyliusAdmin/ShippingMethod/_form.html.twig`.
  
     ```twig
     ...	
-   {{ include('@MangoSyliusZasilkovnaPlugin/Admin/ShippingMethod/_zasilkovnaForm.html.twig') }}
+   {{ include('@ThreeBRSSyliusZasilkovnaPlugin/Admin/ShippingMethod/_zasilkovnaForm.html.twig') }}
     ```
    
-1. Include `@MangoSyliusZasilkovnaPlugin/Shop/Checkout/SelectShipping/_zasilkovnaChoice.html.twig` into `@SyliusShop/Checkout/SelectShipping/_choice.html.twig`.
+1. Include `@ThreeBRSSyliusZasilkovnaPlugin/Shop/Checkout/SelectShipping/_zasilkovnaChoice.html.twig` into `@SyliusShop/Checkout/SelectShipping/_choice.html.twig`.
  
     ```twig
     ...
-   {{ include('@MangoSyliusZasilkovnaPlugin/Shop/Checkout/SelectShipping/_zasilkovnaChoice.html.twig') }}
+   {{ include('@ThreeBRSSyliusZasilkovnaPlugin/Shop/Checkout/SelectShipping/_zasilkovnaChoice.html.twig') }}
     ```
    
-1. Replace `{% include '@SyliusShop/Common/_address.html.twig' with {'address': order.shippingAddress} %}` with `{{ include('@MangoSyliusZasilkovnaPlugin/Shop/Common/Order/_addresses.html.twig') }}` in `@SyliusShop/Common/Order/_addresses.html.twig`
+1. Replace `{% include '@SyliusShop/Common/_address.html.twig' with {'address': order.shippingAddress} %}` with `{{ include('@ThreeBRSSyliusZasilkovnaPlugin/Shop/Common/Order/_addresses.html.twig') }}` in `@SyliusShop/Common/Order/_addresses.html.twig`
 
-1. Replace `{% include '@SyliusAdmin/Common/_address.html.twig' with {'address': order.shippingAddress} %}` with `{{ include('@MangoSyliusZasilkovnaPlugin/Admin/Common/Order/_addresses.html.twig') }}` in `@SyliusAdmin/Order/Show/_addresses.html.twig`
+1. Replace `{% include '@SyliusAdmin/Common/_address.html.twig' with {'address': order.shippingAddress} %}` with `{{ include('@ThreeBRSSyliusZasilkovnaPlugin/Admin/Common/Order/_addresses.html.twig') }}` in `@SyliusAdmin/Order/Show/_addresses.html.twig`
 
 1. Override the template in `@ThreeBRSSyliusShipmentExportPlugin/_row.html.twig`
     ```twig
@@ -145,7 +145,7 @@
    
    {% block address %}
        {% if row.zasilkovna %}
-            {{ include('@MangoSyliusZasilkovnaPlugin/_exporterRow.html.twig') }}
+            {{ include('@ThreeBRSSyliusZasilkovnaPlugin/_exporterRow.html.twig') }}
        {% else %}
            {{ parent() }}
        {% endif %}
