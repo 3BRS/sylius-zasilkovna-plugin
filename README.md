@@ -66,13 +66,13 @@
 1. Add routing to `config/_routes.yaml`
 
     ```yaml
-    mango_sylius_shipment_export_plugin:
+    threebrs_sylius_shipment_export_plugin:
         resource: '@ThreeBRSSyliusShipmentExportPlugin/Resources/config/routing.yml'
         prefix: /admin
     ```
    
-1. Your Entity `Shipment` has to implement `\MangoSylius\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentInterface`. 
-   You can use the trait `\MangoSylius\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentTrait`.
+1. Your Entity `Shipment` has to implement `\ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentInterface`. 
+   You can use the trait `\ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentTrait`.
  
    ```php
    <?php 
@@ -82,8 +82,8 @@
    namespace App\Entity\Shipping;
    
    use Doctrine\ORM\Mapping as ORM;
-   use MangoSylius\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentInterface;
-   use MangoSylius\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentTrait;
+   use ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentInterface;
+   use ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentTrait;
    use Sylius\Component\Core\Model\Shipment as BaseShipment;
    
    /**
@@ -96,8 +96,8 @@
    }
    ```
    
-1. Your Entity `ShippingMethod` has to implement `\MangoSylius\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentInterface`. 
-   You can use the trait `\MangoSylius\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentTrait`.
+1. Your Entity `ShippingMethod` has to implement `\ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentInterface`. 
+   You can use the trait `\ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentTrait`.
  
    ```php
    <?php 
@@ -107,8 +107,8 @@
    namespace App\Entity\Shipping;
    
    use Doctrine\ORM\Mapping as ORM;
-   use MangoSylius\SyliusZasilkovnaPlugin\Model\ZasilkovnaShippingMethodInterface;
-   use MangoSylius\SyliusZasilkovnaPlugin\Model\ZasilkovnaShippingMethodTrait;
+   use ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShippingMethodInterface;
+   use ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShippingMethodTrait;
    use Sylius\Component\Core\Model\ShippingMethod as BaseShippingMethod;
    
    /**
