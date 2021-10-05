@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace MangoSylius\SyliusZasilkovnaPlugin\Repository;
+namespace ThreeBRS\SyliusZasilkovnaPlugin\Repository;
 
-use MangoSylius\SyliusZasilkovnaPlugin\Entity\ZasilkovnaConfigInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
+use ThreeBRS\SyliusZasilkovnaPlugin\Entity\ZasilkovnaConfigInterface;
 
 interface ZasilkovnaConfigRepositoryInterface extends RepositoryInterface
 {
-	public function findOneEnabled(): ?ZasilkovnaConfigInterface;
+    public function findOneEnabled(): ?ZasilkovnaConfigInterface;
 }

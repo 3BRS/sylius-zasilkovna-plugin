@@ -12,8 +12,8 @@
     <a href="https://packagist.org/packages/3brs/sylius-zasilkovna-plugin" title="Version" target="_blank">
         <img src="https://img.shields.io/packagist/v/3brs/sylius-zasilkovna-plugin.svg" />
     </a>
-    <a href="https://travis-ci.com/3brs/sylius-zasilkovna-plugin" title="Build status" target="_blank">
-        <img src="https://img.shields.io/travis/com/3BRS/sylius-zasilkovna-plugin" />
+    <a href="https://circleci.com/gh/3BRS/sylius-zasilkovna-plugin" title="Build status" target="_blank">
+        <img src="https://circleci.com/gh/3BRS/sylius-zasilkovna-plugin.svg?style=shield" />
     </a>
 </h1>
 
@@ -43,14 +43,14 @@
 
 ## Installation
 
-1. Run `$ composer require mangoweb-sylius/sylius-zasilkovna-plugin`.
+1. Run `$ composer require 3brs/sylius-zasilkovna-plugin`.
 1. Add plugin classes to your `config/bundles.php`:
  
    ```php
    return [
       ...
-      MangoSylius\ShipmentExportPlugin\MangoSyliusShipmentExportPlugin::class => ['all' => true],
-      MangoSylius\SyliusZasilkovnaPlugin\MangoSyliusZasilkovnaPlugin::class => ['all' => true],
+      ThreeBRS\ShipmentExportPlugin\ThreeBRSSyliusShipmentExportPlugin::class => ['all' => true],
+      ThreeBRS\SyliusZasilkovnaPlugin\ThreeBRSSyliusZasilkovnaPlugin::class => ['all' => true],
    ];
    ```
   
@@ -60,19 +60,19 @@
     imports:
          ...
          ...
-         - { resource: "@MangoSyliusZasilkovnaPlugin/Resources/config/resources.yml" }
+         - { resource: "@ThreeBRSSyliusZasilkovnaPlugin/Resources/config/resources.yml" }
     ```
    
 1. Add routing to `config/_routes.yaml`
 
     ```yaml
-    mango_sylius_shipment_export_plugin:
-        resource: '@MangoSyliusShipmentExportPlugin/Resources/config/routing.yml'
+    threebrs_sylius_shipment_export_plugin:
+        resource: '@ThreeBRSSyliusShipmentExportPlugin/Resources/config/routing.yml'
         prefix: /admin
     ```
    
-1. Your Entity `Shipment` has to implement `\MangoSylius\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentInterface`. 
-   You can use the trait `\MangoSylius\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentTrait`.
+1. Your Entity `Shipment` has to implement `\ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentInterface`. 
+   You can use the trait `\ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentTrait`.
  
    ```php
    <?php 
@@ -82,8 +82,8 @@
    namespace App\Entity\Shipping;
    
    use Doctrine\ORM\Mapping as ORM;
-   use MangoSylius\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentInterface;
-   use MangoSylius\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentTrait;
+   use ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentInterface;
+   use ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentTrait;
    use Sylius\Component\Core\Model\Shipment as BaseShipment;
    
    /**
@@ -96,8 +96,8 @@
    }
    ```
    
-1. Your Entity `ShippingMethod` has to implement `\MangoSylius\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentInterface`. 
-   You can use the trait `\MangoSylius\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentTrait`.
+1. Your Entity `ShippingMethod` has to implement `\ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentInterface`. 
+   You can use the trait `\ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentTrait`.
  
    ```php
    <?php 
@@ -107,8 +107,8 @@
    namespace App\Entity\Shipping;
    
    use Doctrine\ORM\Mapping as ORM;
-   use MangoSylius\SyliusZasilkovnaPlugin\Model\ZasilkovnaShippingMethodInterface;
-   use MangoSylius\SyliusZasilkovnaPlugin\Model\ZasilkovnaShippingMethodTrait;
+   use ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShippingMethodInterface;
+   use ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShippingMethodTrait;
    use Sylius\Component\Core\Model\ShippingMethod as BaseShippingMethod;
    
    /**
@@ -121,31 +121,31 @@
    }
    ```
 
-1. Include `@MangoSyliusZasilkovnaPlugin/Admin/ShippingMethod/:zasilkovnaForm.html.twig` into `@SyliusAdmin/ShippingMethod/_form.html.twig`.
+1. Include `@ThreeBRSSyliusZasilkovnaPlugin/Admin/ShippingMethod/:zasilkovnaForm.html.twig` into `@SyliusAdmin/ShippingMethod/_form.html.twig`.
  
     ```twig
     ...	
-   {{ include('@MangoSyliusZasilkovnaPlugin/Admin/ShippingMethod/_zasilkovnaForm.html.twig') }}
+   {{ include('@ThreeBRSSyliusZasilkovnaPlugin/Admin/ShippingMethod/_zasilkovnaForm.html.twig') }}
     ```
    
-1. Include `@MangoSyliusZasilkovnaPlugin/Shop/Checkout/SelectShipping/_zasilkovnaChoice.html.twig` into `@SyliusShop/Checkout/SelectShipping/_choice.html.twig`.
+1. Include `@ThreeBRSSyliusZasilkovnaPlugin/Shop/Checkout/SelectShipping/_zasilkovnaChoice.html.twig` into `@SyliusShop/Checkout/SelectShipping/_choice.html.twig`.
  
     ```twig
     ...
-   {{ include('@MangoSyliusZasilkovnaPlugin/Shop/Checkout/SelectShipping/_zasilkovnaChoice.html.twig') }}
+   {{ include('@ThreeBRSSyliusZasilkovnaPlugin/Shop/Checkout/SelectShipping/_zasilkovnaChoice.html.twig') }}
     ```
    
-1. Replace `{% include '@SyliusShop/Common/_address.html.twig' with {'address': order.shippingAddress} %}` with `{{ include('@MangoSyliusZasilkovnaPlugin/Shop/Common/Order/_addresses.html.twig') }}` in `@SyliusShop/Common/Order/_addresses.html.twig`
+1. Replace `{% include '@SyliusShop/Common/_address.html.twig' with {'address': order.shippingAddress} %}` with `{{ include('@ThreeBRSSyliusZasilkovnaPlugin/Shop/Common/Order/_addresses.html.twig') }}` in `@SyliusShop/Common/Order/_addresses.html.twig`
 
-1. Replace `{% include '@SyliusAdmin/Common/_address.html.twig' with {'address': order.shippingAddress} %}` with `{{ include('@MangoSyliusZasilkovnaPlugin/Admin/Common/Order/_addresses.html.twig') }}` in `@SyliusAdmin/Order/Show/_addresses.html.twig`
+1. Replace `{% include '@SyliusAdmin/Common/_address.html.twig' with {'address': order.shippingAddress} %}` with `{{ include('@ThreeBRSSyliusZasilkovnaPlugin/Admin/Common/Order/_addresses.html.twig') }}` in `@SyliusAdmin/Order/Show/_addresses.html.twig`
 
-1. Override the template in `@MangoSyliusShipmentExportPlugin/_row.html.twig`
+1. Override the template in `@ThreeBRSSyliusShipmentExportPlugin/_row.html.twig`
     ```twig
-   {% extends '@!MangoSyliusShipmentExportPlugin/_row.html.twig' %}
+   {% extends '@!ThreeBRSSyliusShipmentExportPlugin/_row.html.twig' %}
    
    {% block address %}
        {% if row.zasilkovna %}
-            {{ include('@MangoSyliusZasilkovnaPlugin/_exporterRow.html.twig') }}
+            {{ include('@ThreeBRSSyliusZasilkovnaPlugin/_exporterRow.html.twig') }}
        {% else %}
            {{ parent() }}
        {% endif %}
@@ -168,6 +168,11 @@ For the guide how to use your own entity see [Sylius docs - Customizing Models](
   ```
   You should add to this array both methods for shipping to Zasilkovna branch and also to customer's address via Zasilkovna service.
 * Packeta API documentation: https://docs.packetery.com/03-creating-packets/01-csv-import.html
+* You can expand the list of countries by the parameter
+  ```yaml
+  parameters:
+    threebrs_sylius_zasilkovna_plugin_payment_methods: ['cz', 'pl', 'sk', 'hu', 'ro']
+  ```
 
 
 ## Development

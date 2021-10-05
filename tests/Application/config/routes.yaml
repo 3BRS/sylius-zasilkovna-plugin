@@ -1,3 +1,3 @@
-mango_sylius_shipment_export_plugin:
-    resource: "@MangoSyliusShipmentExportPlugin/Resources/config/routing.yml"
+threebrs_shipment_export_plugin:
+    resource: "@ThreeBRSSyliusShipmentExportPlugin/Resources/config/routing.yml"
     prefix: /admin

@@ -1,6 +1,6 @@
 parameters:
     shippingMethodsCodes: ['zasilkovna']
-    mango_sylius_sylius_zasilkovna_plugin_payment_methods: ['cz', 'pl', 'sk', 'hu', 'ro']
+    threebrs_sylius_zasilkovna_plugin_payment_methods: ['cz', 'pl', 'sk', 'hu', 'ro']
 
 services:
     _defaults:
@@ -8,7 +8,7 @@ services:
         autoconfigure: false
         public: false
 
-    MangoSylius\SyliusZasilkovnaPlugin\Form\Extension\ShipmentZasilkovnaExtension:
+    ThreeBRS\SyliusZasilkovnaPlugin\Form\Extension\ShipmentZasilkovnaExtension:
         arguments:
             - '@sylius.shipping_methods_resolver'
             - '@sylius.repository.shipping_method'
@@ -17,25 +17,25 @@ services:
             - name: form.type_extension
               extended_type: Sylius\Bundle\CoreBundle\Form\Type\Checkout\ShipmentType
 
-    MangoSylius\SyliusZasilkovnaPlugin\Form\Extension\AdminZasilkovnaShippingMethodExtension:
+    ThreeBRS\SyliusZasilkovnaPlugin\Form\Extension\AdminZasilkovnaShippingMethodExtension:
         tags:
             - name: form.type_extension
               extended_type: Sylius\Bundle\ShippingBundle\Form\Type\ShippingMethodType
 
-    MangoSylius\SyliusZasilkovnaPlugin\Form\Type\ZasilkovnaConfigType:
+    ThreeBRS\SyliusZasilkovnaPlugin\Form\Type\ZasilkovnaConfigType:
         tags:
             - name: form.type
         arguments:
-            $countryChoices: '%mango_sylius_sylius_zasilkovna_plugin_payment_methods%'
-            $dataClass: MangoSylius\SyliusZasilkovnaPlugin\Entity\ZasilkovnaConfig
+            $countryChoices: '%threebrs_sylius_zasilkovna_plugin_payment_methods%'
+            $dataClass: ThreeBRS\SyliusZasilkovnaPlugin\Entity\ZasilkovnaConfig
             $validationGroups: ['sylius']
 
-    MangoSylius\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentExporter:
+    ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentExporter:
         public: true
         arguments:
             $currencyConverter: '@sylius.currency_converter'
             $shippingMethodsCodes: '%shippingMethodsCodes%'
         tags:
-            - name: mango_sylius.shipment_exporter_type
+            - name: threebrs.shipment_exporter_type
               type: 'zasilkovna'
               label: 'Zásilkovna'

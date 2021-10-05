@@ -2,20 +2,25 @@ imports:
     - { resource: "@SyliusCoreBundle/Resources/config/app/config.yml" }
 
     - { resource: "@SyliusAdminBundle/Resources/config/app/config.yml" }
-    - { resource: "@SyliusAdminApiBundle/Resources/config/app/config.yml" }
 
     - { resource: "@SyliusShopBundle/Resources/config/app/config.yml" }
 
-    - { resource: "@MangoSyliusZasilkovnaPlugin/Resources/config/resources.yml" }
+    - { resource: "@SyliusApiBundle/Resources/config/app/config.yaml" }
+
+    - { resource: "@ThreeBRSSyliusZasilkovnaPlugin/Resources/config/resources.yml" }
 
 parameters:
     sylius_core.public_dir: '%kernel.project_dir%/public'
+
+sylius_shop:
+    product_grid:
+        include_all_descendants: true
 
 sylius_shipping:
     resources:
         shipment:
             classes:
-                model: Tests\MangoSylius\SyliusZasilkovnaPlugin\Application\src\Entity\Shipping\Shipment
+                model: Tests\ThreeBRS\SyliusZasilkovnaPlugin\Application\Entity\Shipment
         shipping_method:
             classes:
-                model: Tests\MangoSylius\SyliusZasilkovnaPlugin\Application\src\Entity\Shipping\ShippingMethod
+                model: Tests\ThreeBRS\SyliusZasilkovnaPlugin\Application\Entity\ShippingMethod

@@ -20,7 +20,7 @@
 			{% if form.parent.parent['zasilkovna_' ~ method.code].vars.attr['data-label'] is defined and form.parent.parent['zasilkovna_' ~ method.code].vars.attr['data-label'] is not empty %}
 				{{ form.parent.parent['zasilkovna_' ~ method.code].vars.attr['data-label'] }}
 			{% else %}
-				{{ 'mangoweb.shop.checkout.shippingStep.chooseZasilkovnaBranch'|trans }}
+				{{ 'threebrs.shop.checkout.shippingStep.chooseZasilkovnaBranch'|trans }}
 			{% endif %}
 		</button>
 	</div>
@@ -29,4 +29,6 @@
 	{{ form_widget(form.parent.parent['zasilkovna_' ~ method.code]) }}
 {% endif %}
 
-{{ form_widget(form.parent.parent.zasilkovna) }}
+{% if not form.parent.parent.zasilkovna.isRendered %}
+	{{ form_widget(form.parent.parent.zasilkovna) }}
+{% endif %}
