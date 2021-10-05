@@ -6,6 +6,7 @@
 
 - Support for Sylius 1.8|1.9|1.10, Symfony ^4.4|^5.2, PHP ^7.3|^8.0
 - Change namespace from `MangoSylius\SyliusZasilkovnaPlugin` to `ThreeBRS\SyliusZasilkovnaPlugin`
+- Change table name from `mango_zasilkovna_config` to `threebrs_zasilkovna_config`
 - *BC break: Version 3.0.0 is NOT compatible with previous versions due to namespace change*
 
 ## v2.1 (2020-03-25)

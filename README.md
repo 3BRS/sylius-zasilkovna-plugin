@@ -49,7 +49,7 @@
    ```php
    return [
       ...
-      ThreeBRS\ShipmentExportPlugin\MangoSyliusShipmentExportPlugin::class => ['all' => true],
+      ThreeBRS\ShipmentExportPlugin\ThreeBRSSyliusShipmentExportPlugin::class => ['all' => true],
       ThreeBRS\SyliusZasilkovnaPlugin\MangoSyliusZasilkovnaPlugin::class => ['all' => true],
    ];
    ```
@@ -67,7 +67,7 @@
 
     ```yaml
     mango_sylius_shipment_export_plugin:
-        resource: '@MangoSyliusShipmentExportPlugin/Resources/config/routing.yml'
+        resource: '@ThreeBRSSyliusShipmentExportPlugin/Resources/config/routing.yml'
         prefix: /admin
     ```
    
@@ -139,9 +139,9 @@
 
 1. Replace `{% include '@SyliusAdmin/Common/_address.html.twig' with {'address': order.shippingAddress} %}` with `{{ include('@MangoSyliusZasilkovnaPlugin/Admin/Common/Order/_addresses.html.twig') }}` in `@SyliusAdmin/Order/Show/_addresses.html.twig`
 
-1. Override the template in `@MangoSyliusShipmentExportPlugin/_row.html.twig`
+1. Override the template in `@ThreeBRSSyliusShipmentExportPlugin/_row.html.twig`
     ```twig
-   {% extends '@!MangoSyliusShipmentExportPlugin/_row.html.twig' %}
+   {% extends '@!ThreeBRSSyliusShipmentExportPlugin/_row.html.twig' %}
    
    {% block address %}
        {% if row.zasilkovna %}
