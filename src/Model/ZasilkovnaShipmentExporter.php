@@ -128,7 +128,7 @@ class ZasilkovnaShipmentExporter implements ShipmentExporterInterface
             /** @var OrderItemInterface $item */
             $variant = $item->getVariant();
             if ($variant !== null) {
-                $weight += $variant->getWeight();
+                $weight += $variant->getWeight() * $item->getQuantity();
             }
         }
 
