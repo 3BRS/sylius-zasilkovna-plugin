@@ -2,9 +2,13 @@
 	{% set inputId = form.parent.parent['zasilkovna_' ~ method.code].vars.id %}
 	{% set labelId = inputId ~ '_title' %}
 
-	{% set zasilkovnaOptions = '{}' %}
+	{% set zasilkovnaOptions = {
+		language: app.request.locale,
+	} %}
 	{% if form.parent.parent['zasilkovna_' ~ method.code].vars.attr['data-country'] is defined and  form.parent.parent['zasilkovna_' ~ method.code].vars.attr['data-country'] is not empty %}
-		{% set zasilkovnaOptions = '{country: \'' ~ form.parent.parent['zasilkovna_' ~ method.code].vars.attr['data-country'] ~ '\'}' %}
+		{% set zasilkovnaOptions = zasilkovnaOptions|merge({
+			country: form.parent.parent['zasilkovna_' ~ method.code].vars.attr['data-country']
+		}) %}
 	{% endif %}
 
 	<div class="ui hidden divider"></div>
@@ -15,7 +19,7 @@
 				onclick="Packeta.Widget.pick(
 					'{{ form.parent.parent['zasilkovna_' ~ method.code].vars.attr['data-api-key'] }}',
 					showSelectedPickupPoint.bind(this, '{{ inputId }}', '{{ labelId }}'),
-				{{ zasilkovnaOptions }})"
+				{{ zasilkovnaOptions|json_encode }})"
 				value="">
 			{% if form.parent.parent['zasilkovna_' ~ method.code].vars.attr['data-label'] is defined and form.parent.parent['zasilkovna_' ~ method.code].vars.attr['data-label'] is not empty %}
 				{{ form.parent.parent['zasilkovna_' ~ method.code].vars.attr['data-label'] }}
