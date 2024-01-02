@@ -1,0 +1,22 @@
+threebrs:
+    shop:
+        checkout:
+            complete:
+                zasilkovnaBrach: Zásilkovna
+            shippingStep:
+                chooseZasilkovnaBranch: Vyberte výdejní místo Zásilkovny
+
+    admin:
+        zasilkovna:
+            title: Zásilkovna
+            success:
+                import: Synchroizace poboček Zásilkovny byla úspěšná.
+            form:
+                optionCountry: Zobrazovat jen zásilkovny z dané země
+                apiKey: Zásilkovna API key
+                senderLabel: Název odesílatele
+                carrierId: ID dopravní společnosti
+                syncAction: Synchronizovat pobočky Zásilkovny
+            export:
+                toZasilkovnaBranch: Na pobočku Zásilkovny
+                toAddress: Na adresu

@@ -3,6 +3,7 @@
         <img src="https://3brs1.fra1.cdn.digitaloceanspaces.com/3brs/logo/3BRS-logo-sylius-200.png"/>
     </a>
 </p>
+
 <h1 align="center">
     Zásilkovna Plugin
     <br />
@@ -43,37 +44,42 @@
 
 ## Installation
 
-1. Run `$ composer require 3brs/sylius-zasilkovna-plugin`.
-1. Add plugin classes to your `config/bundles.php`:
- 
-   ```php
-   return [
-      ...
-      ThreeBRS\ShipmentExportPlugin\ThreeBRSSyliusShipmentExportPlugin::class => ['all' => true],
-      ThreeBRS\SyliusZasilkovnaPlugin\ThreeBRSSyliusZasilkovnaPlugin::class => ['all' => true],
-   ];
+Hint: see test application for example configuration [test/Application](tests%2FApplication)
+
+1. Get plugin
+
+   ```bash
+   composer require 3brs/sylius-zasilkovna-plugin
    ```
-  
-1. Add resource to `config/packeges/_sylius.yaml`
+
+1. Register plugin and its dependencies in your `config/bundles.php`
+
+   ```php
+      return [
+         # ...
+         ThreeBRS\ShipmentExportPlugin\ThreeBRSSyliusShipmentExportPlugin::class => ['all' => true],
+         ThreeBRS\SyliusZasilkovnaPlugin\ThreeBRSSyliusZasilkovnaPlugin::class => ['all' => true],
+      ];
+   ```
+
+1. Add resource to `config/packages/_sylius.yaml`
 
     ```yaml
     imports:
-         ...
-         ...
+         # ...
          - { resource: "@ThreeBRSSyliusZasilkovnaPlugin/Resources/config/resources.yml" }
     ```
-   
-1. Add routing to `config/_routes.yaml`
 
+1. Add routing to `config/_routes.yaml`
     ```yaml
-    threebrs_sylius_shipment_export_plugin:
-        resource: '@ThreeBRSSyliusShipmentExportPlugin/Resources/config/routing.yml'
+    threebrs_zasilkovna_plugin:
+        resource: "@ThreeBRSSyliusZasilkovnaPlugin/Resources/config/routing.yml"
         prefix: /admin
-    ```
-   
-1. Your Entity `Shipment` has to implement `\ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentInterface`. 
+   ```
+
+1. Your Entity `Shipment` has to implement `\ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentInterface`.
    You can use the trait `\ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentTrait`.
- 
+
    ```php
    <?php 
    
@@ -95,10 +101,10 @@
        use ZasilkovnaShipmentTrait;
    }
    ```
-   
-1. Your Entity `ShippingMethod` has to implement `\ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentInterface`. 
+
+1. Your Entity `ShippingMethod` has to implement `\ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentInterface`.
    You can use the trait `\ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentTrait`.
- 
+
    ```php
    <?php 
    
@@ -121,40 +127,44 @@
    }
    ```
 
-1. Include `@ThreeBRSSyliusZasilkovnaPlugin/Admin/ShippingMethod/:zasilkovnaForm.html.twig` into `@SyliusAdmin/ShippingMethod/_form.html.twig`.
- 
+1. Include `@ThreeBRSSyliusZasilkovnaPlugin/Admin/ShippingMethod/_zasilkovnaForm.html.twig` into `@SyliusAdmin/ShippingMethod/_form.html.twig`.
+
     ```twig
+    {# @SyliusAdmin/ShippingMethod/_form.html.twig #}
     ...	
-   {{ include('@ThreeBRSSyliusZasilkovnaPlugin/Admin/ShippingMethod/_zasilkovnaForm.html.twig') }}
+    {{ include('@ThreeBRSSyliusZasilkovnaPlugin/Admin/ShippingMethod/_zasilkovnaForm.html.twig') }}
     ```
-   
+
 1. Include `@ThreeBRSSyliusZasilkovnaPlugin/Shop/Checkout/SelectShipping/_zasilkovnaChoice.html.twig` into `@SyliusShop/Checkout/SelectShipping/_choice.html.twig`.
- 
+
     ```twig
+    {# @SyliusShop/Checkout/SelectShipping/_choice.html.twig #}
     ...
-   {{ include('@ThreeBRSSyliusZasilkovnaPlugin/Shop/Checkout/SelectShipping/_zasilkovnaChoice.html.twig') }}
+    {{ include('@ThreeBRSSyliusZasilkovnaPlugin/Shop/Checkout/SelectShipping/_zasilkovnaChoice.html.twig') }}
     ```
-   
+
 1. Replace `{% include '@SyliusShop/Common/_address.html.twig' with {'address': order.shippingAddress} %}` with `{{ include('@ThreeBRSSyliusZasilkovnaPlugin/Shop/Common/Order/_addresses.html.twig') }}` in `@SyliusShop/Common/Order/_addresses.html.twig`
 
 1. Replace `{% include '@SyliusAdmin/Common/_address.html.twig' with {'address': order.shippingAddress} %}` with `{{ include('@ThreeBRSSyliusZasilkovnaPlugin/Admin/Common/Order/_addresses.html.twig') }}` in `@SyliusAdmin/Order/Show/_addresses.html.twig`
 
 1. Override the template in `@ThreeBRSSyliusShipmentExportPlugin/_row.html.twig`
     ```twig
-   {% extends '@!ThreeBRSSyliusShipmentExportPlugin/_row.html.twig' %}
+    {% extends '@!ThreeBRSSyliusShipmentExportPlugin/_row.html.twig' %}
    
-   {% block address %}
-       {% if row.zasilkovna %}
+    {% block address %}
+        {% if row.zasilkovna %}
             {{ include('@ThreeBRSSyliusZasilkovnaPlugin/_exporterRow.html.twig') }}
-       {% else %}
+        {% else %}
            {{ parent() }}
-       {% endif %}
-   {% endblock %}
+        {% endif %}
+    {% endblock %}
     ```
-   
-1. Create and run doctrine database migrations.
 
-For the guide how to use your own entity see [Sylius docs - Customizing Models](https://docs.sylius.com/en/1.6/customization/model.html)
+1. Create and run doctrine database migrations
+
+How to generate and run Doctrine migrations see [Symfony docs - Doctrine bundle](https://symfony.com/bundles/DoctrineMigrationsBundle/current/index.html#usage)
+
+For the guide how to use your own entity see [Sylius docs - Customizing Models](https://docs.sylius.com/en/1.2/customization/model.html)
 
 ## Usage
 
@@ -179,21 +189,40 @@ For the guide how to use your own entity see [Sylius docs - Customizing Models](
 
 ### Usage
 
-- Develop your plugin in `/src`
-- See `bin/` for useful commands
+- Alter plugin in `/src`
+- See `bin/` dir for useful commands
 
 ### Testing
-
 
 After your changes you must ensure that the tests are still passing.
 
 ```bash
-$ composer install
-$ bin/console doctrine:schema:create -e test
-$ bin/behat
-$ bin/phpstan.sh
-$ bin/ecs.sh
+composer install
+bin/console doctrine:database:create --if-not-exists --env=test
+bin/console doctrine:schema:update --complete --force --env=test
+yarn --cwd tests/Application install
+yarn --cwd tests/Application build
+
+bin/behat
+bin/phpstan.sh
+bin/ecs.sh
+vendor/bin/phpspec run
 ```
+
+### Opening Sylius with your plugin
+
+1. Install symfony CLI command: https://symfony.com/download
+    - hint: for Docker (with Ubuntu) use _Debian/Ubuntu — APT based
+      Linux_ installation steps as `root` user and without `sudo` command
+        - you may need to install `curl` first ```apt-get update && apt-get install curl --yes```
+2. Run app
+
+```bash
+(cd tests/Application && APP_ENV=test bin/console sylius:fixtures:load)
+(cd tests/Application && APP_ENV=test symfony server:start --dir=public --port=8080)
+```
+
+- change `APP_ENV` to `dev` if you need it
 
 License
 -------

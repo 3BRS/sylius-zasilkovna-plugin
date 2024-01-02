@@ -1,48 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		   xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-	<services>
-		<defaults public="true"/>
+    <services>
+        <defaults public="true"/>
 
-		<service id="Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Page\Admin\ShippingMethod\UpdatePageInterface"
-				 class="Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Page\Admin\ShippingMethod\UpdatePage"
-				 parent="sylius.behat.page.admin.crud.update" public="false">
-			<argument type="string">sylius_admin_channel_update</argument>
-		</service>
+        <service id="sylius.behat.context.ui.admin.sorting"
+                 class="Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Context\Ui\Admin\ManagingSortingContext">
+            <argument type="service" id="Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Pages\Admin\Sorting\SortingPageInterface"/>
+            <argument type="service" id="sylius.behat.notification_checker"/>
+            <argument type="service" id="sylius.repository.taxon"/>
+        </service>
 
-		<service id="sylius_zasilkovna_plugin.context.ui.admin.shipping_method"
-				 class="Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Context\Ui\Admin\ManagingShippingMethodContext">
-			<argument type="service"
-					  id="Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Page\Admin\ShippingMethod\UpdatePageInterface"/>
-			<argument type="service" id="sylius.behat.notification_checker"/>
-		</service>
+        <service id="Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Pages\Admin\Sorting\SortingPageInterface"
+                 class="Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Pages\Admin\Sorting\SortingPage"
+                 parent="sylius.behat.symfony_page"
+                 public="true"
+        />
 
-		<service id="sylius_zasilkovna_plugin.context.domain.command"
-				 class="Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Context\Domain\CommandContext">
-			<argument type="service" id="kernel"/>
-			<argument type="service" id="doctrine.orm.entity_manager"/>
-		</service>
-
-		<service id="sylius_zasilkovna_plugin.context.setup.shipping_method"
-				 class="Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Context\Setup\ShippingMethodContext">
-			<argument type="service" id="doctrine.orm.entity_manager"/>
-			<argument type="service" id="sylius.behat.shared_storage"/>
-		</service>
-
-		<service id="sylius_zasilkovna_plugin.context.ui.shop.managing_zasilkovna_context"
-				 class="Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Context\Ui\Shop\ManagingZasilkovnaContext">
-			<argument type="service"
-					  id="Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Page\Shop\Zasilkovna\ZasilkovnaPagesInterface"/>
-			<argument type="service" id="sylius.behat.context.ui.shop.checkout.shipping"/>
-		</service>
-
-		<service id="Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Page\Shop\Zasilkovna\ZasilkovnaPagesInterface"
-				 class="Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Page\Shop\Zasilkovna\ZasilkovnaPages"
-				 parent="sylius.behat.page.admin.crud.update" public="false">
-			<argument type="string">sylius_admin_channel_update</argument>
-		</service>
-
-	</services>
+    </services>
 </container>
