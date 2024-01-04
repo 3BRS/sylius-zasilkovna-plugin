@@ -1,4 +1,0 @@
-suites:
-    main:
-        namespace: ThreeBRS\SyliusZasilkovnaPlugin
-        psr4_prefix: ThreeBRS\SyliusZasilkovnaPlugin
