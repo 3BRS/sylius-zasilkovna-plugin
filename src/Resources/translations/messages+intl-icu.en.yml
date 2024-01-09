@@ -1,0 +1,22 @@
+threebrs:
+    shop:
+        checkout:
+            complete:
+                zasilkovnaBrach: Zásilkovna branch
+            shippingStep:
+                chooseZasilkovnaBranch: Choose Zásilkovna Branch
+
+    admin:
+        zasilkovna:
+            title: Zásilkovna
+            success:
+                import: Zásilkovna branches synchronization was successful.
+            form:
+                optionCountry: Show only pickup points from specific country in the map (leave blank to show all)
+                apiKey: Zásilkovna api key
+                senderLabel: Sender label
+                carrierId: Carrier ID
+                syncAction: Sync Zásilkovna branches
+            export:
+                toZasilkovnaBranch: Zásilkovna Branch
+                toAddress: To address

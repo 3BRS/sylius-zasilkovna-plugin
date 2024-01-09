@@ -32,7 +32,7 @@ final class ShippingMethodContext implements Context
     /**
      * @Given /^(this shipping method) has Zásilkovna api key$/
      */
-    public function thisPaymentMethodHasZone(ShippingMethodInterface $shippingMethod)
+    public function thisShippingMethodHasZasilkovnaApiKey(ShippingMethodInterface $shippingMethod)
     {
         assert($shippingMethod instanceof ZasilkovnaShippingMethodInterface);
 
