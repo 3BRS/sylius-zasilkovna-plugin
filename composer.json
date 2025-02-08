@@ -1,7 +1,7 @@
 {
     "name": "3brs/sylius-zasilkovna-plugin",
     "type": "sylius-plugin",
-    "keywords": ["sylius", "sylius-plugin", "zasilkovna", "packeta"],
+	"keywords": ["sylius", "sylius-plugin", "zasilkovna", "packeta"],
     "description": "Zasilkovna plugin for Sylius",
     "license": "MIT",
     "require": {
