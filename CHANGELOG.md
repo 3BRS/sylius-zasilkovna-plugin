@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v3.1.0 (2025-02-09)
+- Support for Sylius 1.11, Symfony 5.4
+- Drop support for Sylius <1.11, Symfony <5.4
+
 ## v3.0.0 (2021-10-05)
 
 #### Details

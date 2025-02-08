@@ -21,7 +21,7 @@ final class ZasilkovnaConfigType extends AbstractResourceType
     public function __construct(
         array $countryChoices,
         string $dataClass,
-        array $validationGroups = []
+        array $validationGroups = [],
     ) {
         parent::__construct($dataClass, $validationGroups);
 

@@ -20,7 +20,7 @@ sylius_shipping:
     resources:
         shipment:
             classes:
-                model: Tests\ThreeBRS\SyliusZasilkovnaPlugin\Application\Entity\Shipment
+                model: Tests\ThreeBRS\SyliusZasilkovnaPlugin\Entity\Shipment
         shipping_method:
             classes:
-                model: Tests\ThreeBRS\SyliusZasilkovnaPlugin\Application\Entity\ShippingMethod
+                model: Tests\ThreeBRS\SyliusZasilkovnaPlugin\Entity\ShippingMethod
