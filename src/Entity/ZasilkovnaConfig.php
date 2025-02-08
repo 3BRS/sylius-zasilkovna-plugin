@@ -12,46 +12,37 @@ use Sylius\Component\Resource\Model\ResourceInterface;
  *
  * @ORM\Entity
  */
+#[ORM\Table(name: 'threebrs_zasilkovna_config')]
+#[ORM\Entity]
 class ZasilkovnaConfig implements ResourceInterface, ZasilkovnaConfigInterface
 {
     /**
-     * @var int|null
-     *
      * @ORM\Id
      *
      * @ORM\GeneratedValue(strategy="IDENTITY")
      *
      * @ORM\Column(type="integer", nullable=false)
      */
-    protected $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'IDENTITY')]
+    #[ORM\Column(type: 'integer', nullable: false)]
+    protected ?int $id = null;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(type="string", nullable=true)
-     */
-    protected $apiKey;
+    /** @ORM\Column(type="string", nullable=true) */
+    #[ORM\Column(type: 'string', nullable: true)]
+    protected ?string $apiKey = null;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(nullable=true, type="string")
-     */
-    private $senderLabel;
+    /** @ORM\Column(type="string", nullable=true) */
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $senderLabel = null;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(nullable=true, type="string")
-     */
-    private $carrierId;
+    /** @ORM\Column(type="string", nullable=true) */
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $carrierId = null;
 
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(nullable=true, type="string")
-     */
-    private $optionCountry;
+    /** @ORM\Column(type="string", nullable=true) */
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $optionCountry = null;
 
     public function getId(): ?int
     {
@@ -73,12 +64,12 @@ class ZasilkovnaConfig implements ResourceInterface, ZasilkovnaConfigInterface
         $this->optionCountry = $optionCountry;
     }
 
-    public function getApiKey(): ?String
+    public function getApiKey(): ?string
     {
         return $this->apiKey;
     }
 
-    public function setApiKey(?String $apiKey): void
+    public function setApiKey(?string $apiKey): void
     {
         $this->apiKey = $apiKey;
     }
