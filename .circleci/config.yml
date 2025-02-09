@@ -93,9 +93,10 @@ jobs:
             -   run: (cd tests/Application && bin/console cache:clear --env=test -vvv)
             -   run: (cd tests/Application && bin/console cache:warmup --env=test -vvv)
             -   run:
+                    name: PHPStan with specific configuration for Sylius 1.12 and Symfony 6.4
                     command: |
-                        if [ "<< parameters.sylius_version >>" = "1.12" ]; then
-                          APP_ENV=test bin/phpstan.sh --configuration phpstan-sylius-1.12-latest.dist.neon
+                        if [ "<< parameters.sylius_version >>" = "1.12" -a "<< parameters.symfony_version >>" = "6.4" ]; then
+                          APP_ENV=test bin/phpstan.sh --configuration phpstan-sylius-1.12.latest-symfony-6.4.dist.neon
                         else
                           APP_ENV=test bin/phpstan.sh
                         fi
