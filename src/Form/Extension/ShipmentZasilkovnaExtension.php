@@ -16,6 +16,7 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentInterface;
 use ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShippingMethodInterface;
 
 class ShipmentZasilkovnaExtension extends AbstractTypeExtension
@@ -35,7 +36,7 @@ class ShipmentZasilkovnaExtension extends AbstractTypeExtension
     public function __construct(
         ShippingMethodsResolverInterface $shippingMethodsResolver,
         ShippingMethodRepositoryInterface $shippingMethodRepository,
-        TranslatorInterface $translator
+        TranslatorInterface $translator,
     ) {
         $this->shippingMethodsResolver = $shippingMethodsResolver;
         $this->shippingMethodRepository = $shippingMethodRepository;
@@ -50,14 +51,15 @@ class ShipmentZasilkovnaExtension extends AbstractTypeExtension
             ->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
                 $orderData = $event->getData();
 
+                assert(is_array($orderData));
                 assert(array_key_exists('zasilkovna', $orderData));
                 assert(array_key_exists('method', $orderData));
 
                 $orderData['zasilkovna'] = null;
                 if (
-                    array_key_exists('zasilkovna_' . $orderData['method'], $orderData)
-                    && in_array($orderData['method'], $this->zasilkovnaMethodsCodes, true)
-                    && $orderData['zasilkovna_' . $orderData['method']] !== ''
+                    array_key_exists('zasilkovna_' . $orderData['method'], $orderData) &&
+                    in_array($orderData['method'], $this->zasilkovnaMethodsCodes, true) &&
+                    $orderData['zasilkovna_' . $orderData['method']] !== ''
                 ) {
                     $orderData['zasilkovna'] = $orderData['zasilkovna_' . $orderData['method']];
                 }
@@ -66,6 +68,8 @@ class ShipmentZasilkovnaExtension extends AbstractTypeExtension
 
                 // validation
                 $data = $event->getData();
+                assert(is_array($data));
+                assert(array_key_exists('method', $data));
                 if (array_key_exists('zasilkovna_' . $data['method'], $data) && !((bool) $orderData['zasilkovna_' . $orderData['method']])) {
                     $event->getForm()->addError(new FormError($this->translator->trans('threebrs.shop.checkout.zasilkovnaBranch', [], 'validators')));
                 }
@@ -73,6 +77,7 @@ class ShipmentZasilkovnaExtension extends AbstractTypeExtension
             ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
                 $form = $event->getForm();
                 $shipment = $event->getData();
+                assert($shipment === null || $shipment instanceof ZasilkovnaShipmentInterface);
 
                 if ($shipment && $this->shippingMethodsResolver->supports($shipment)) {
                     $shippingMethods = $this->shippingMethodsResolver->getSupportedMethods($shipment);
@@ -80,7 +85,7 @@ class ShipmentZasilkovnaExtension extends AbstractTypeExtension
                     $shippingMethods = $this->shippingMethodRepository->findAll();
                 }
 
-                $selectedMethodCode = $shipment !== null && $shipment->getMethod() !== null ? $shipment->getMethod()->getCode() : null;
+                $selectedMethodCode = $shipment?->getMethod()?->getCode() ?? null;
 
                 foreach ($shippingMethods as $method) {
                     assert($method instanceof ShippingMethodInterface);
@@ -94,7 +99,7 @@ class ShipmentZasilkovnaExtension extends AbstractTypeExtension
 
                         $data = null;
                         $dataLabel = null;
-                        if ($selectedMethodCode !== null && $selectedMethodCode === $method->getCode() && $shipment->getZasilkovna() !== null) {
+                        if ($selectedMethodCode !== null && $selectedMethodCode === $method->getCode() && $shipment?->getZasilkovna() !== null) {
                             $data = json_encode($shipment->getZasilkovna());
                             $dataLabel = $this->getZasilkovnaName($shipment->getZasilkovna());
                         }
@@ -128,7 +133,7 @@ class ShipmentZasilkovnaExtension extends AbstractTypeExtension
                     }
 
                     return json_decode($zasilkovnaAsString, true);
-                }
+                },
             ));
     }
 

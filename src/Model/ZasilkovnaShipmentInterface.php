@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace ThreeBRS\SyliusZasilkovnaPlugin\Model;
 
-interface ZasilkovnaShipmentInterface
+use Sylius\Component\Shipping\Model\ShipmentInterface;
+
+interface ZasilkovnaShipmentInterface extends ShipmentInterface
 {
     /**
      * @return array<mixed>|null

@@ -11,6 +11,7 @@ trait ZasilkovnaShippingMethodTrait
 {
     /**
      * @var ZasilkovnaConfigInterface|null
+     *
      * @ORM\OneToOne(targetEntity="ThreeBRS\SyliusZasilkovnaPlugin\Entity\ZasilkovnaConfig", cascade={"persist"}, fetch="EAGER")
      */
     private $zasilkovnaConfig;

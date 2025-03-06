@@ -24,7 +24,7 @@ class ZasilkovnaShipmentExporter implements ShipmentExporterInterface
      */
     public function __construct(
         CurrencyConverter $currencyConverter,
-        array $shippingMethodsCodes
+        array $shippingMethodsCodes,
     ) {
         $this->shippingMethodsCodes = $shippingMethodsCodes;
         $this->currencyConverter = $currencyConverter;
@@ -116,10 +116,10 @@ class ZasilkovnaShipmentExporter implements ShipmentExporterInterface
 
         if ($totalAmount !== null) {
             $totalAmount = number_format(
-                $totalAmount / 100,
+                ((int) $totalAmount) / 100,
                 $decimals,
                 '.',
-                ''
+                '',
             );
         }
 

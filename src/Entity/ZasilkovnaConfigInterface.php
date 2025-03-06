@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace ThreeBRS\SyliusZasilkovnaPlugin\Entity;
 
-interface ZasilkovnaConfigInterface
+use Sylius\Component\Resource\Model\ResourceInterface;
+
+interface ZasilkovnaConfigInterface extends ResourceInterface
 {
     public function getId(): ?int;
 

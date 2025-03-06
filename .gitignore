@@ -2,6 +2,7 @@
 /vendor/
 /node_modules/
 /composer.lock
+/symfony.lock
 
 /etc/build/*
 !/etc/build/.gitkeep

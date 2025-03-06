@@ -19,12 +19,6 @@
 			<argument type="service" id="sylius.behat.notification_checker"/>
 		</service>
 
-		<service id="sylius_zasilkovna_plugin.context.domain.command"
-				 class="Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Context\Domain\CommandContext">
-			<argument type="service" id="kernel"/>
-			<argument type="service" id="doctrine.orm.entity_manager"/>
-		</service>
-
 		<service id="sylius_zasilkovna_plugin.context.setup.shipping_method"
 				 class="Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Context\Setup\ShippingMethodContext">
 			<argument type="service" id="doctrine.orm.entity_manager"/>
