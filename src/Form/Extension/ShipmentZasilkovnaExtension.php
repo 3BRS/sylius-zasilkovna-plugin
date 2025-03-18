@@ -21,18 +21,19 @@ use ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShippingMethodInterface;
 
 class ShipmentZasilkovnaExtension extends AbstractTypeExtension
 {
-    /** @var ShippingMethodsResolverInterface */
-    private $shippingMethodsResolver;
+    private ShippingMethodsResolverInterface $shippingMethodsResolver;
 
-    /** @var ShippingMethodRepositoryInterface */
-    private $shippingMethodRepository;
+    /** @var ShippingMethodRepositoryInterface<ZasilkovnaShippingMethodInterface&ShippingMethodInterface> */
+    private ShippingMethodRepositoryInterface $shippingMethodRepository;
 
     /** @var string[]; */
-    private $zasilkovnaMethodsCodes = [];
+    private array $zasilkovnaMethodsCodes = [];
 
-    /** @var TranslatorInterface */
-    private $translator;
+    private TranslatorInterface $translator;
 
+    /**
+     * @param ShippingMethodRepositoryInterface<ZasilkovnaShippingMethodInterface&ShippingMethodInterface> $shippingMethodRepository
+     */
     public function __construct(
         ShippingMethodsResolverInterface $shippingMethodsResolver,
         ShippingMethodRepositoryInterface $shippingMethodRepository,

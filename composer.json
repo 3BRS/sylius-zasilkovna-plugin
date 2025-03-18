@@ -6,9 +6,9 @@
     "license": "MIT",
     "require": {
         "ext-json": "*",
-        "php": "^8.0",
-        "sylius/sylius": "1.12.*|1.13.*",
-        "3brs/sylius-shipment-export-plugin": "0.7.*"
+        "php": "^8.1",
+        "sylius/sylius": "1.12.*|1.13.*|1.14.*",
+        "3brs/sylius-shipment-export-plugin": "^v0.8.0"
     },
     "require-dev": {
         "behat/behat": "^3.9.0",
@@ -33,15 +33,15 @@
         "polishsymfonycommunity/symfony-mocker-container": "^1.0",
         "rector/rector": "^1.2",
         "sylius-labs/coding-standard": "^4.2",
-        "symfony/browser-kit": "^6.0",
-        "symfony/debug-bundle": "^6.0",
-        "symfony/dotenv": "^6.0",
+        "symfony/browser-kit": "^6.4",
+        "symfony/debug-bundle": "^6.4",
+        "symfony/dotenv": "^6.4",
         "symfony/flex": "^2.2.2",
-        "symfony/framework-bundle": "^6.0",
-        "symfony/http-foundation": "^6.0",
-        "symfony/http-kernel": "^6.0",
-        "symfony/intl": "^6.0",
-        "symfony/web-profiler-bundle": "^6.0",
+        "symfony/framework-bundle": "^6.4",
+        "symfony/http-foundation": "^6.4",
+        "symfony/http-kernel": "^6.4",
+        "symfony/intl": "^6.4",
+        "symfony/web-profiler-bundle": "^6.4",
         "doctrine/annotations": "^2.0"
     },
     "conflict": {
@@ -57,7 +57,7 @@
         "knplabs/knp-menu": "<3.3.0",
         "lexik/jwt-authentication-bundle": "<2.12",
         "polishsymfonycommunity/symfony-mocker-container": "<1.0.6",
-        "sylius/resource-bundle": "<1.10.0",
+        "sylius/resource-bundle": "<1.11.0",
         "symfony/css-selector": "<4.4.24",
         "symfony/framework-bundle": ">=5.4.0 <=5.4.20|>=6.0.0 <=6.0.16|>=6.1.0 <=6.1.8|>=6.2.0 <=6.2.2|6.2.8",
         "symfony/mime": "<5.4.0",
