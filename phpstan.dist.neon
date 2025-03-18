@@ -10,4 +10,4 @@ parameters:
         - 'tests/'
 
     ignoreErrors:
-        - identifier: missingType.generics
+        - message: '#PHPDoc tag @.*contains generic type.*is not\s+generic#'
