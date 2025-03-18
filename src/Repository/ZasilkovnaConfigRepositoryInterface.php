@@ -7,6 +7,9 @@ namespace ThreeBRS\SyliusZasilkovnaPlugin\Repository;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use ThreeBRS\SyliusZasilkovnaPlugin\Entity\ZasilkovnaConfigInterface;
 
+/**
+ * @extends RepositoryInterface<ZasilkovnaConfigInterface>
+ */
 interface ZasilkovnaConfigRepositoryInterface extends RepositoryInterface
 {
     public function findOneEnabled(): ?ZasilkovnaConfigInterface;
