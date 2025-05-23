@@ -1,0 +1,41 @@
+parameters:
+    shippingMethodsCodes: ['zasilkovna']
+    threebrs_sylius_zasilkovna_plugin_payment_methods: ['cz', 'pl', 'sk', 'hu', 'ro']
+
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+        public: false
+
+    ThreeBRS\SyliusZasilkovnaPlugin\Form\Extension\ShipmentZasilkovnaExtension:
+        arguments:
+            - '@sylius.resolver.shipping_methods.default'
+            - '@sylius.repository.shipping_method'
+            - '@translator'
+        tags:
+            - name: form.type_extension
+              extended_type: Sylius\Bundle\CoreBundle\Form\Type\Checkout\ShipmentType
+
+    ThreeBRS\SyliusZasilkovnaPlugin\Form\Extension\AdminZasilkovnaShippingMethodExtension:
+        tags:
+            - name: form.type_extension
+              extended_type: Sylius\Bundle\ShippingBundle\Form\Type\ShippingMethodType
+
+    ThreeBRS\SyliusZasilkovnaPlugin\Form\Type\ZasilkovnaConfigType:
+        tags:
+            - name: form.type
+        arguments:
+            $countryChoices: '%threebrs_sylius_zasilkovna_plugin_payment_methods%'
+            $dataClass: ThreeBRS\SyliusZasilkovnaPlugin\Entity\ZasilkovnaConfig
+            $validationGroups: ['sylius']
+
+    ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentExporter:
+        public: true
+        arguments:
+            $currencyConverter: '@sylius.converter.currency'
+            $shippingMethodsCodes: '%shippingMethodsCodes%'
+        tags:
+            - name: threebrs.shipment_exporter_type
+              type: 'zasilkovna'
+              label: 'Zásilkovna'

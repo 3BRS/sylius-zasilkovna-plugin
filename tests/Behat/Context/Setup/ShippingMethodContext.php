@@ -13,20 +13,10 @@ use ThreeBRS\SyliusZasilkovnaPlugin\Entity\ZasilkovnaConfig;
 use ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentInterface;
 use ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShippingMethodInterface;
 
-final class ShippingMethodContext implements Context
+final readonly class ShippingMethodContext implements Context
 {
-    /** @var EntityManagerInterface */
-    private $entityManager;
-
-    /** @var SharedStorageInterface */
-    private $sharedStorage;
-
-    public function __construct(
-        EntityManagerInterface $entityManager,
-        SharedStorageInterface $sharedStorage
-    ) {
-        $this->entityManager = $entityManager;
-        $this->sharedStorage = $sharedStorage;
+    public function __construct(private EntityManagerInterface $entityManager, private SharedStorageInterface $sharedStorage)
+    {
     }
 
     /**

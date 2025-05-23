@@ -18,14 +18,14 @@ final class ZasilkovnaPages extends BaseUpdatePage implements ZasilkovnaPagesInt
     {
         $shippingAddress = $this->getElement('shippingAddress')->getText();
 
-        return false !== strpos($shippingAddress, 'Zásilkovna branch');
+        return str_contains($shippingAddress, 'Zásilkovna branch');
     }
 
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [
-            'zasilkovna_hidden_input' => 'input[type="hidden"][name^="sylius_checkout_select_shipping[shipments][0][zasilkovna_"]',
-            'shippingAddress' => '#sylius-shipping-address',
+            'zasilkovna_hidden_input' => 'input[type="hidden"][name^="sylius_shop_checkout_select_shipping[shipments][0][zasilkovna_"]',
+            'shippingAddress' => '[data-test-shipping-address]',
         ]);
     }
 }

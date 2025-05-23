@@ -3,6 +3,7 @@
 /node_modules/
 /composer.lock
 /symfony.lock
+/.envrc
 
 /etc/build/*
 !/etc/build/.gitkeep

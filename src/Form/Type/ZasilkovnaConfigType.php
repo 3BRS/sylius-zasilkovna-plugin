@@ -11,21 +11,16 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 final class ZasilkovnaConfigType extends AbstractResourceType
 {
-    /** @var array<string> */
-    private $countryChoices;
-
     /**
      * @param array<string> $countryChoices
      * @param array<string> $validationGroups
      */
     public function __construct(
-        array $countryChoices,
+        private readonly array $countryChoices,
         string $dataClass,
         array $validationGroups = [],
     ) {
         parent::__construct($dataClass, $validationGroups);
-
-        $this->countryChoices = $countryChoices;
     }
 
     /** @param array<mixed> $options */

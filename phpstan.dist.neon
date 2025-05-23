@@ -4,10 +4,10 @@ includes:
 
 parameters:
     symfony:
-        container_xml_path: tests/Application/var/cache/test/Tests_ThreeBRS_SyliusZasilkovnaPlugin_KernelTestDebugContainer.xml
+        containerXmlPath: tests/Application/var/cache/dev/Tests_ThreeBRS_SyliusZasilkovnaPlugin_KernelDevDebugContainer.xml
 
     excludePaths:
         - 'tests/'
 
     ignoreErrors:
-        - message: '#PHPDoc tag @.*contains generic type.*is not\s+generic#'
+        - identifier: trait.unused

@@ -9,8 +9,10 @@ use Sylius\Behat\Page\Admin\Channel\UpdatePage as BaseUpdatePage;
 
 final class UpdatePage extends BaseUpdatePage implements UpdatePageInterface
 {
-    public function changeInput(string $elementName, ?string $value): void
-    {
+    public function changeInput(
+        string  $elementName,
+        ?string $value,
+    ): void {
         $this->getElement($elementName)->setValue($value);
     }
 
@@ -19,12 +21,12 @@ final class UpdatePage extends BaseUpdatePage implements UpdatePageInterface
         $this->getElement('apiKey')->setValue($apiKey);
     }
 
-    public function isSingleResourceOnPage(string $elementName)
+    public function getSingleResourceFromPage(string $elementName): string|bool|array|null
     {
         return $this->getElement($elementName)->getValue();
     }
 
-    public function zasilkovnaDownloadButtonIsOnPage(): NodeElement
+    public function getZasilkovnaDownloadButton(): NodeElement
     {
         return $this->getElement('zasilkovnaDownloadButton');
     }
@@ -33,16 +35,16 @@ final class UpdatePage extends BaseUpdatePage implements UpdatePageInterface
     {
         $shippingAddress = $this->getElement('shippingAddress')->getText();
 
-        return false !== strpos($shippingAddress, 'Zásilkovna branch');
+        return str_contains($shippingAddress, 'Zásilkovna branch');
     }
 
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [
-            'apiKey' => '#sylius_shipping_method_zasilkovnaConfig_apiKey',
-            'senderLabel' => '#sylius_shipping_method_zasilkovnaConfig_senderLabel',
-            'carrierId' => '#sylius_shipping_method_zasilkovnaConfig_carrierId',
-            'shippingAddress' => '#shipping-address',
+            'apiKey'          => '#sylius_admin_shipping_method_zasilkovnaConfig_apiKey',
+            'senderLabel'     => '#sylius_admin_shipping_method_zasilkovnaConfig_senderLabel',
+            'carrierId'       => '#sylius_admin_shipping_method_zasilkovnaConfig_carrierId',
+            'shippingAddress' => '[data-test-shipping-address]',
         ]);
     }
 }

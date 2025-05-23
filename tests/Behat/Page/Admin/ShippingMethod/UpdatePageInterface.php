@@ -9,13 +9,13 @@ use Sylius\Behat\Page\Admin\Channel\UpdatePageInterface as BaseUpdatePageInterfa
 
 interface UpdatePageInterface extends BaseUpdatePageInterface
 {
-    public function isSingleResourceOnPage(string $elementName);
+    public function getSingleResourceFromPage(string $elementName): string|bool|array|null;
 
     public function changeApiKey(?string $apiKey): void;
 
     public function changeInput(string $elementName, ?string $value): void;
 
-    public function zasilkovnaDownloadButtonIsOnPage(): NodeElement;
+    public function getZasilkovnaDownloadButton(): NodeElement;
 
     public function iSeeZasilkovnaBranchInsteadOfShippingAddress(): bool;
 }
