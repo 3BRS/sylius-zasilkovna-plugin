@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace ThreeBRS\SyliusZasilkovnaPlugin\Model;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 trait ZasilkovnaShipmentTrait
 {
-    /**
-     * @var array<mixed>|null
-     *
-     * @ORM\Column(type="json", nullable=true)
-     */
-    private $zasilkovna;
+    /** @var array<mixed>|null */
+    #[ORM\Column(type: Types::JSON, nullable: true)]
+    private ?array $zasilkovna = null;
 
     /**
      * @return array<mixed>|null

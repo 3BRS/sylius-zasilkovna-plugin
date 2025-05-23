@@ -1,0 +1,6 @@
+sylius_twig_hooks:
+    hooks:
+        sylius_admin.order.show.content.sections.customer:
+            shipping_address:
+                template: '@ThreeBRSSyliusZasilkovnaPlugin/Admin/order/show/content/sections/customer/shipping_address.html.twig'
+                priority: 0

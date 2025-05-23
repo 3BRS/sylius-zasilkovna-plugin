@@ -10,20 +10,10 @@ use Sylius\Behat\Context\Ui\Shop\Checkout\CheckoutShippingContext;
 use Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Page\Shop\Zasilkovna\ZasilkovnaPagesInterface;
 use Webmozart\Assert\Assert;
 
-final class ManagingZasilkovnaContext implements Context
+final readonly class ManagingZasilkovnaContext implements Context
 {
-    /** @var ZasilkovnaPagesInterface */
-    private $zasilkovnaPages;
-
-    /** @var CheckoutShippingContext */
-    private $checkoutShippingContext;
-
-    public function __construct(
-        ZasilkovnaPagesInterface $zasilkovnaPages,
-        CheckoutShippingContext $checkoutShippingContext
-    ) {
-        $this->zasilkovnaPages = $zasilkovnaPages;
-        $this->checkoutShippingContext = $checkoutShippingContext;
+    public function __construct(private ZasilkovnaPagesInterface $zasilkovnaPages, private CheckoutShippingContext $checkoutShippingContext)
+    {
     }
 
     /**

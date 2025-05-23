@@ -13,25 +13,20 @@ use ThreeBRS\SyliusShipmentExportPlugin\Model\ShipmentExporterInterface;
 
 class ZasilkovnaShipmentExporter implements ShipmentExporterInterface
 {
-    /** @var array<string> */
-    private $shippingMethodsCodes;
-
-    /** @var CurrencyConverter */
-    private $currencyConverter;
-
     /**
      * @param array<string> $shippingMethodsCodes
      */
     public function __construct(
-        CurrencyConverter $currencyConverter,
-        array $shippingMethodsCodes,
+        private readonly CurrencyConverter $currencyConverter,
+        private readonly array $shippingMethodsCodes,
     ) {
-        $this->shippingMethodsCodes = $shippingMethodsCodes;
-        $this->currencyConverter = $currencyConverter;
     }
 
-    private function convert(int $amount, string $sourceCurrencyCode, string $targetCurrencyCode): int
-    {
+    private function convert(
+        int $amount,
+        string $sourceCurrencyCode,
+        string $targetCurrencyCode,
+    ): int {
         return $this->currencyConverter->convert($amount, $sourceCurrencyCode, $targetCurrencyCode);
     }
 
@@ -48,8 +43,10 @@ class ZasilkovnaShipmentExporter implements ShipmentExporterInterface
      *
      * @return array<mixed>
      */
-    public function getRow(ShipmentInterface $shipment, array $questionsArray): array
-    {
+    public function getRow(
+        ShipmentInterface $shipment,
+        array $questionsArray,
+    ): array {
         assert($shipment instanceof ZasilkovnaShipmentInterface);
 
         $order = $shipment->getOrder();
@@ -80,12 +77,14 @@ class ZasilkovnaShipmentExporter implements ShipmentExporterInterface
         $totalAmount = '';
         if ($zasilkovna !== null && array_key_exists('currency', $zasilkovna) && $zasilkovna['currency'] !== null) {
             $targetCurrencyCode = $zasilkovna['currency'];
+            assert(is_string($targetCurrencyCode));
             $totalAmount = $this->convert($order->getTotal(), $currencyCode, $targetCurrencyCode);
         }
 
         if ($targetCurrencyCode === null) {
             if ($zasilkovna !== null && array_key_exists('country', $zasilkovna)) {
                 $countryCode = $zasilkovna['country'];
+                assert(is_string($countryCode));
             } else {
                 $countryCode = $address->getCountryCode();
             }
@@ -132,9 +131,15 @@ class ZasilkovnaShipmentExporter implements ShipmentExporterInterface
             }
         }
 
-        $zasilkovnaId = $zasilkovna !== null && array_key_exists('id', $zasilkovna) ? $zasilkovna['id'] : null;
-        $carrierId = $shippingMethod->getZasilkovnaConfig() !== null ? $shippingMethod->getZasilkovnaConfig()->getCarrierId() : null;
-        $senderLabel = $shippingMethod->getZasilkovnaConfig() !== null ? $shippingMethod->getZasilkovnaConfig()->getSenderLabel() : null;
+        $zasilkovnaId = $zasilkovna !== null && array_key_exists('id', $zasilkovna)
+            ? $zasilkovna['id']
+            : null;
+        $carrierId = $shippingMethod->getZasilkovnaConfig() !== null
+            ? $shippingMethod->getZasilkovnaConfig()->getCarrierId()
+            : null;
+        $senderLabel = $shippingMethod->getZasilkovnaConfig() !== null
+            ? $shippingMethod->getZasilkovnaConfig()->getSenderLabel()
+            : null;
 
         return [
             /* 1 - version 5 */
@@ -159,7 +164,9 @@ class ZasilkovnaShipmentExporter implements ShipmentExporterInterface
             $address->getPhoneNumber(),
 
             /* 8 - Dobírka */
-            $isCashOnDelivery ? $totalAmount : '',
+            $isCashOnDelivery
+                ? $totalAmount
+                : '',
 
             /* 9 - Měna */
             $targetCurrencyCode,
@@ -183,16 +190,22 @@ class ZasilkovnaShipmentExporter implements ShipmentExporterInterface
             '',
 
             /* 16 - Ulice */
-            $zasilkovnaId ? '' : $address->getStreet(),
+            $zasilkovnaId
+                ? ''
+                : $address->getStreet(),
 
             /* 17 - Č. domu */
             '',
 
             /* 18 - Obec */
-            $zasilkovnaId ? '' : $address->getCity(),
+            $zasilkovnaId
+                ? ''
+                : $address->getCity(),
 
             /* 19 - PSČ */
-            $zasilkovnaId ? '' : $address->getPostcode(),
+            $zasilkovnaId
+                ? ''
+                : $address->getPostcode(),
 
             /* 20 - Unique ID of the carrier pickup point */
             '',

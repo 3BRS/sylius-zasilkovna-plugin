@@ -18,7 +18,7 @@ final class ZasilkovnaPages extends BaseUpdatePage implements ZasilkovnaPagesInt
     {
         $shippingAddress = $this->getElement('shippingAddress')->getText();
 
-        return false !== strpos($shippingAddress, 'Zásilkovna branch');
+        return str_contains($shippingAddress, 'Zásilkovna branch');
     }
 
     protected function getDefinedElements(): array

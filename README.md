@@ -54,20 +54,18 @@
    ];
    ```
   
-1. Add resource to `config/packeges/_sylius.yaml`
+1. Use plugin configuration by creating `config/packages/threebrs_sylius_zasilkovna_plugin.yaml` with content
 
     ```yaml
     imports:
-         ...
-         ...
-         - { resource: "@ThreeBRSSyliusZasilkovnaPlugin/Resources/config/resources.yml" }
+         - { resource: "@ThreeBRSSyliusZasilkovnaPlugin/Resources/config/config.yaml" }
     ```
    
 1. Add routing to `config/_routes.yaml`
 
     ```yaml
     threebrs_sylius_shipment_export_plugin:
-        resource: '@ThreeBRSSyliusShipmentExportPlugin/Resources/config/routing.yml'
+        resource: '@ThreeBRSSyliusShipmentExportPlugin/config/routing.{yml,yaml}'
         prefix: /admin
     ```
    
@@ -86,10 +84,8 @@
    use ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentTrait;
    use Sylius\Component\Core\Model\Shipment as BaseShipment;
    
-   /**
-    * @ORM\Entity
-    * @ORM\Table(name="sylius_shipment")
-    */
+   #[ORM\Entity]
+   #[ORM\Table(name: 'sylius_shipment')]
    class Shipment extends BaseShipment implements ZasilkovnaShipmentInterface
    {
        use ZasilkovnaShipmentTrait;
@@ -111,33 +107,13 @@
    use ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShippingMethodTrait;
    use Sylius\Component\Core\Model\ShippingMethod as BaseShippingMethod;
    
-   /**
-    * @ORM\Entity
-    * @ORM\Table(name="sylius_shipping_method")
-    */
+   #[ORM\Entity]
+   #[ORM\Table(name: 'sylius_shipping_method')]
    class ShippingMethod extends BaseShippingMethod implements ZasilkovnaShippingMethodInterface
    {
        use ZasilkovnaShippingMethodTrait;
    }
    ```
-
-1. Include `@ThreeBRSSyliusZasilkovnaPlugin/Admin/ShippingMethod/:zasilkovnaForm.html.twig` into `@SyliusAdmin/ShippingMethod/_form.html.twig`.
- 
-    ```twig
-    ...	
-   {{ include('@ThreeBRSSyliusZasilkovnaPlugin/Admin/ShippingMethod/_zasilkovnaForm.html.twig') }}
-    ```
-   
-1. Include `@ThreeBRSSyliusZasilkovnaPlugin/Shop/Checkout/SelectShipping/_zasilkovnaChoice.html.twig` into `@SyliusShop/Checkout/SelectShipping/_choice.html.twig`.
- 
-    ```twig
-    ...
-   {{ include('@ThreeBRSSyliusZasilkovnaPlugin/Shop/Checkout/SelectShipping/_zasilkovnaChoice.html.twig') }}
-    ```
-   
-1. Replace `{% include '@SyliusShop/Common/_address.html.twig' with {'address': order.shippingAddress} %}` with `{{ include('@ThreeBRSSyliusZasilkovnaPlugin/Shop/Common/Order/_addresses.html.twig') }}` in `@SyliusShop/Common/Order/_addresses.html.twig`
-
-1. Replace `{% include '@SyliusAdmin/Common/_address.html.twig' with {'address': order.shippingAddress} %}` with `{{ include('@ThreeBRSSyliusZasilkovnaPlugin/Admin/Common/Order/_addresses.html.twig') }}` in `@SyliusAdmin/Order/Show/_addresses.html.twig`
 
 1. Override the template in `@ThreeBRSSyliusShipmentExportPlugin/_row.html.twig`
     ```twig
@@ -151,7 +127,7 @@
        {% endif %}
    {% endblock %}
     ```
-   
+
 1. Create and run doctrine database migrations.
 
 For the guide how to use your own entity see [Sylius docs - Customizing Models](https://docs.sylius.com/en/1.6/customization/model.html)
@@ -173,7 +149,6 @@ For the guide how to use your own entity see [Sylius docs - Customizing Models](
   parameters:
     threebrs_sylius_zasilkovna_plugin_payment_methods: ['cz', 'pl', 'sk', 'hu', 'ro']
   ```
-
 
 ## Development
 

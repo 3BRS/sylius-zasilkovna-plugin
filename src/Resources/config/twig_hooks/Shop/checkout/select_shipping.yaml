@@ -1,0 +1,11 @@
+sylius_twig_hooks:
+    hooks:
+        'sylius_shop.checkout.select_shipping.content.form.shipments.shipment.choice.details':
+            zasilkovna:
+                template: '@ThreeBRSSyliusZasilkovnaPlugin/Shop/checkout/select_shipping/content/form/shipments/shipment/choice/zasilkovna.html.twig'
+                priority: 0
+
+        'sylius_shop.checkout.select_shipping':
+            3brs_zasilkovna_javascript:
+                template: '@ThreeBRSSyliusZasilkovnaPlugin/Shop/checkout/select_shipping/javascript/zasilkovna_javascript.html.twig'
+                priority: -100

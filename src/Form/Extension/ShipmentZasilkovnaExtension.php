@@ -21,48 +21,45 @@ use ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShippingMethodInterface;
 
 class ShipmentZasilkovnaExtension extends AbstractTypeExtension
 {
-    private ShippingMethodsResolverInterface $shippingMethodsResolver;
-
-    /** @var ShippingMethodRepositoryInterface<ZasilkovnaShippingMethodInterface&ShippingMethodInterface> */
-    private ShippingMethodRepositoryInterface $shippingMethodRepository;
-
-    /** @var string[]; */
+    /** @var string[] */
     private array $zasilkovnaMethodsCodes = [];
-
-    private TranslatorInterface $translator;
 
     /**
      * @param ShippingMethodRepositoryInterface<ZasilkovnaShippingMethodInterface&ShippingMethodInterface> $shippingMethodRepository
      */
     public function __construct(
-        ShippingMethodsResolverInterface $shippingMethodsResolver,
-        ShippingMethodRepositoryInterface $shippingMethodRepository,
-        TranslatorInterface $translator,
+        private readonly ShippingMethodsResolverInterface $shippingMethodsResolver,
+        private readonly ShippingMethodRepositoryInterface $shippingMethodRepository,
+        private readonly TranslatorInterface $translator,
     ) {
-        $this->shippingMethodsResolver = $shippingMethodsResolver;
-        $this->shippingMethodRepository = $shippingMethodRepository;
-        $this->translator = $translator;
     }
 
     /** @param array<mixed> $options */
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    public function buildForm(
+        FormBuilderInterface $builder,
+        array $options,
+    ): void {
         $builder
             ->add('zasilkovna', HiddenType::class)
-            ->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
+            ->addEventListener(FormEvents::PRE_SUBMIT, function (
+                FormEvent $event,
+            ): void {
                 $orderData = $event->getData();
 
                 assert(is_array($orderData));
                 assert(array_key_exists('zasilkovna', $orderData));
                 assert(array_key_exists('method', $orderData));
 
+                $method = $orderData['method'];
+                assert(is_string($method));
+
                 $orderData['zasilkovna'] = null;
                 if (
-                    array_key_exists('zasilkovna_' . $orderData['method'], $orderData) &&
+                    array_key_exists('zasilkovna_' . $method, $orderData) &&
                     in_array($orderData['method'], $this->zasilkovnaMethodsCodes, true) &&
-                    $orderData['zasilkovna_' . $orderData['method']] !== ''
+                    $orderData['zasilkovna_' . $method] !== ''
                 ) {
-                    $orderData['zasilkovna'] = $orderData['zasilkovna_' . $orderData['method']];
+                    $orderData['zasilkovna'] = $orderData['zasilkovna_' . $method];
                 }
 
                 $event->setData($orderData);
@@ -71,11 +68,15 @@ class ShipmentZasilkovnaExtension extends AbstractTypeExtension
                 $data = $event->getData();
                 assert(is_array($data));
                 assert(array_key_exists('method', $data));
-                if (array_key_exists('zasilkovna_' . $data['method'], $data) && !((bool) $orderData['zasilkovna_' . $orderData['method']])) {
+                $method2 = $data['method'];
+                assert(is_string($method2));
+                if (array_key_exists('zasilkovna_' . $method2, $data) && !((bool) $orderData['zasilkovna_' . $method])) {
                     $event->getForm()->addError(new FormError($this->translator->trans('threebrs.shop.checkout.zasilkovnaBranch', [], 'validators')));
                 }
             })
-            ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+            ->addEventListener(FormEvents::PRE_SET_DATA, function (
+                FormEvent $event,
+            ) {
                 $form = $event->getForm();
                 $shipment = $event->getData();
                 assert($shipment === null || $shipment instanceof ZasilkovnaShipmentInterface);
@@ -125,13 +126,16 @@ class ShipmentZasilkovnaExtension extends AbstractTypeExtension
         $builder
             ->get('zasilkovna')
             ->addModelTransformer(new CallbackTransformer(
-                function ($zasilkovnaAsArray) {
-                    return null;
-                },
-                function ($zasilkovnaAsString) {
+                fn (
+                    $zasilkovnaAsArray,
+                ) => null,
+                function (
+                    $zasilkovnaAsString,
+                ) {
                     if ($zasilkovnaAsString === null) {
                         return null;
                     }
+                    assert(is_string($zasilkovnaAsString));
 
                     return json_decode($zasilkovnaAsString, true);
                 },

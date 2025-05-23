@@ -1,0 +1,30 @@
+{% set order = hookable_metadata.context.order %}
+{% set prefixes = hookable_metadata.prefixes|merge(['sylius_shop.shared']) %}
+
+{% set zasilkovna = order.shipments.last.zasilkovna %}
+{% if zasilkovna %}
+    <address>
+        {{ 'threebrs.shop.checkout.complete.zasilkovnaBrach'|trans }}<br>
+        <strong>
+            <a href="{{ zasilkovna['url'] is defined ? zasilkovna['url'] : 'https://www.zasilkovna.cz/pobocky/' ~ zasilkovna['id'] }}"
+               target="_blank" rel="noopener">
+                {{ zasilkovna['place'] is defined ? zasilkovna['place'] : '' }}
+            </a>
+        </strong>
+        <br>
+        {% if zasilkovna['street'] is defined and zasilkovna['city'] is defined and zasilkovna['zip'] is defined %}
+            {{ zasilkovna['street'] }}<br/>
+            {{ zasilkovna['city'] }}, {{ zasilkovna['zip'] }}<br/>
+        {% elseif zasilkovna['nameStreet'] is defined %}
+            {{ zasilkovna['nameStreet'] }}<br/>
+        {% elseif zasilkovna['name'] is defined %}
+            {{ zasilkovna['name'] }}<br/>
+        {% endif %}
+        {% if zasilkovna['country'] is defined %}
+            <i class="{{ zasilkovna['country']|lower }} flag"></i>
+            {{ zasilkovna['country']|upper|sylius_country_name|upper }}
+        {% endif %}
+    </address>
+{% else %}
+    {% include '@SyliusShop/shared/address.html.twig' %}
+{% endif %}

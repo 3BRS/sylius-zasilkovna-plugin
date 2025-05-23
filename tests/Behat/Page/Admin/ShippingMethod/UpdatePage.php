@@ -33,7 +33,7 @@ final class UpdatePage extends BaseUpdatePage implements UpdatePageInterface
     {
         $shippingAddress = $this->getElement('shippingAddress')->getText();
 
-        return false !== strpos($shippingAddress, 'Zásilkovna branch');
+        return str_contains($shippingAddress, 'Zásilkovna branch');
     }
 
     protected function getDefinedElements(): array

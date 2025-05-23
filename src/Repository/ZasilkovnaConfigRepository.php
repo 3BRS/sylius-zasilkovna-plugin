@@ -26,8 +26,9 @@ class ZasilkovnaConfigRepository extends EntityRepository implements ZasilkovnaC
         ;
 
         try {
+            // @phpstan-ignore return.type
             return $queryBuilder->getQuery()->getSingleResult();
-        } catch (NoResultException $e) {
+        } catch (NoResultException) {
             return null;
         }
     }

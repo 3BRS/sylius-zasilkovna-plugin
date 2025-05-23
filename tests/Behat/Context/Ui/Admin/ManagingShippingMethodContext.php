@@ -9,20 +9,10 @@ use Sylius\Behat\Service\NotificationCheckerInterface;
 use Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Page\Admin\ShippingMethod\UpdatePageInterface;
 use Webmozart\Assert\Assert;
 
-final class ManagingShippingMethodContext implements Context
+final readonly class ManagingShippingMethodContext implements Context
 {
-    /** @var UpdatePageInterface */
-    private $updatePage;
-
-    /** @var NotificationCheckerInterface */
-    private $notificationChecker;
-
-    public function __construct(
-        UpdatePageInterface $updatePage,
-        NotificationCheckerInterface $notificationChecker
-    ) {
-        $this->updatePage = $updatePage;
-        $this->notificationChecker = $notificationChecker;
+    public function __construct(private UpdatePageInterface $updatePage)
+    {
     }
 
     /**

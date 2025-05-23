@@ -1,0 +1,17 @@
+sylius_ui:
+    # TODO
+#    events:
+#        sylius.shop.layout.javascripts:
+#            blocks:
+#                threebrs_sylius.sylius_zasilkovna_plugin.shop.layout.javascripts:
+#                    template: "@ThreeBRSSyliusZasilkovnaPlugin/Shop/_javascripts.html.twig"
+#                    priority: 5
+
+sylius_resource:
+    resources:
+        threebrs_zasilkovna_plugin.zasilkovna_config:
+            driver: doctrine/orm
+            classes:
+                model: ThreeBRS\SyliusZasilkovnaPlugin\Entity\ZasilkovnaConfig
+                repository: ThreeBRS\SyliusZasilkovnaPlugin\Repository\ZasilkovnaConfigRepository
+                form: ThreeBRS\SyliusZasilkovnaPlugin\Form\Type\ZasilkovnaConfigType
