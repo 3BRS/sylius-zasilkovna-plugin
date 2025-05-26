@@ -65,12 +65,7 @@ class ShipmentPacketaExtension extends AbstractTypeExtension
                 $event->setData($orderData);
 
                 // validation
-                $data = $event->getData();
-                assert(is_array($data));
-                assert(array_key_exists('method', $data));
-                $method2 = $data['method'];
-                assert(is_string($method2));
-                if (array_key_exists('packeta_' . $method2, $data) && !((bool) $orderData['packeta_' . $method])) {
+                if (array_key_exists('packeta_' . $method, $orderData) && $orderData['packeta'] === null) {
                     $event->getForm()->addError(new FormError($this->translator->trans('threebrs.shop.checkout.packetaBranch', [], 'validators')));
                 }
             })
