@@ -6,35 +6,35 @@
 	<services>
 		<defaults public="true"/>
 
-		<service id="Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Page\Admin\ShippingMethod\UpdatePageInterface"
-				 class="Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Page\Admin\ShippingMethod\UpdatePage"
+		<service id="Tests\ThreeBRS\SyliusPacketaPlugin\Behat\Page\Admin\ShippingMethod\UpdatePageInterface"
+				 class="Tests\ThreeBRS\SyliusPacketaPlugin\Behat\Page\Admin\ShippingMethod\UpdatePage"
 				 parent="sylius.behat.page.admin.crud.update" public="false">
 			<argument type="string">sylius_admin_channel_update</argument>
 			<argument type="service" id="Sylius\Behat\Service\Helper\AutocompleteHelperInterface" />
 		</service>
 
-		<service id="sylius_zasilkovna_plugin.context.ui.admin.shipping_method"
-				 class="Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Context\Ui\Admin\ManagingShippingMethodContext">
+		<service id="sylius_packeta_plugin.context.ui.admin.shipping_method"
+				 class="Tests\ThreeBRS\SyliusPacketaPlugin\Behat\Context\Ui\Admin\ManagingShippingMethodContext">
 			<argument type="service"
-					  id="Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Page\Admin\ShippingMethod\UpdatePageInterface"/>
+					  id="Tests\ThreeBRS\SyliusPacketaPlugin\Behat\Page\Admin\ShippingMethod\UpdatePageInterface"/>
 			<argument type="service" id="sylius.behat.notification_checker.admin"/>
 		</service>
 
-		<service id="sylius_zasilkovna_plugin.context.setup.shipping_method"
-				 class="Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Context\Setup\ShippingMethodContext">
+		<service id="sylius_packeta_plugin.context.setup.shipping_method"
+				 class="Tests\ThreeBRS\SyliusPacketaPlugin\Behat\Context\Setup\ShippingMethodContext">
 			<argument type="service" id="doctrine.orm.entity_manager"/>
 			<argument type="service" id="sylius.behat.shared_storage"/>
 		</service>
 
-		<service id="sylius_zasilkovna_plugin.context.ui.shop.managing_zasilkovna_context"
-				 class="Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Context\Ui\Shop\ManagingZasilkovnaContext">
+		<service id="sylius_packeta_plugin.context.ui.shop.managing_packeta_context"
+				 class="Tests\ThreeBRS\SyliusPacketaPlugin\Behat\Context\Ui\Shop\ManagingPacketaContext">
 			<argument type="service"
-					  id="Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Page\Shop\Zasilkovna\ZasilkovnaPagesInterface"/>
+					  id="Tests\ThreeBRS\SyliusPacketaPlugin\Behat\Page\Shop\Packeta\PacketaPagesInterface"/>
 			<argument type="service" id="sylius.behat.context.ui.shop.checkout.shipping"/>
 		</service>
 
-		<service id="Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Page\Shop\Zasilkovna\ZasilkovnaPagesInterface"
-				 class="Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Page\Shop\Zasilkovna\ZasilkovnaPages"
+		<service id="Tests\ThreeBRS\SyliusPacketaPlugin\Behat\Page\Shop\Packeta\PacketaPagesInterface"
+				 class="Tests\ThreeBRS\SyliusPacketaPlugin\Behat\Page\Shop\Packeta\PacketaPages"
 				 parent="sylius.behat.page.admin.crud.update" public="false">
 			<argument type="string">sylius_admin_channel_update</argument>
 			<argument type="service" id="Sylius\Behat\Service\Helper\AutocompleteHelperInterface" />

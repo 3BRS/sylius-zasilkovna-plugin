@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Page\Admin\ShippingMethod;
+namespace Tests\ThreeBRS\SyliusPacketaPlugin\Behat\Page\Admin\ShippingMethod;
 
 use Behat\Mink\Element\NodeElement;
 use Sylius\Behat\Page\Admin\Channel\UpdatePage as BaseUpdatePage;
@@ -26,24 +26,24 @@ final class UpdatePage extends BaseUpdatePage implements UpdatePageInterface
         return $this->getElement($elementName)->getValue();
     }
 
-    public function getZasilkovnaDownloadButton(): NodeElement
+    public function getPacketaDownloadButton(): NodeElement
     {
-        return $this->getElement('zasilkovnaDownloadButton');
+        return $this->getElement('packetaDownloadButton');
     }
 
-    public function iSeeZasilkovnaBranchInsteadOfShippingAddress(): bool
+    public function iSeePacketaBranchInsteadOfShippingAddress(): bool
     {
         $shippingAddress = $this->getElement('shippingAddress')->getText();
 
-        return str_contains($shippingAddress, 'Zásilkovna branch');
+        return str_contains($shippingAddress, 'Packeta branch');
     }
 
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [
-            'apiKey'          => '#sylius_admin_shipping_method_zasilkovnaConfig_apiKey',
-            'senderLabel'     => '#sylius_admin_shipping_method_zasilkovnaConfig_senderLabel',
-            'carrierId'       => '#sylius_admin_shipping_method_zasilkovnaConfig_carrierId',
+            'apiKey'          => '#sylius_admin_shipping_method_packetaConfig_apiKey',
+            'senderLabel'     => '#sylius_admin_shipping_method_packetaConfig_senderLabel',
+            'carrierId'       => '#sylius_admin_shipping_method_packetaConfig_carrierId',
             'shippingAddress' => '[data-test-shipping-address]',
         ]);
     }

@@ -1,9 +1,9 @@
-{% if row.zasilkovna %}
-	Zásilkovna:
-	{{ row.zasilkovna['place'] is defined ? row.zasilkovna['place'] }},
-	{% if row.zasilkovna['nameStreet'] is defined %}
-		{{ row.zasilkovna['nameStreet'] }}
-	{% elseif row.zasilkovna['name'] is defined %}
-		{{ row.zasilkovna['name'] }}
+{% if row.packeta %}
+	Packeta:
+	{{ row.packeta['place'] is defined ? row.packeta['place'] }},
+	{% if row.packeta['nameStreet'] is defined %}
+		{{ row.packeta['nameStreet'] }}
+	{% elseif row.packeta['name'] is defined %}
+		{{ row.packeta['name'] }}
 	{% endif %}
 {% endif %}

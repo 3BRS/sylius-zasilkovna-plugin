@@ -1,0 +1,12 @@
+{% set form = hookable_metadata.context.form %}
+
+<div class="col-12">
+    <h4>{{ 'threebrs.admin.packeta.title'|trans }}</h4>
+
+    <div class="card-body">
+        {{ form_row(form.packetaConfig.apiKey) }}
+        {{ form_row(form.packetaConfig.optionCountry) }}
+        {{ form_row(form.packetaConfig.senderLabel) }}
+        {{ form_row(form.packetaConfig.carrierId) }}
+    </div>
+</div>

@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v4.0.0 (2025-06-10)
+- Support for Sylius 2.0, Symfony ^7.1
+- Drop support for Sylius 1, PHP 8.1
+- ⚠️ BC Rename for Composer from `3brs/sylius-zasilkovna-plugin` to `3brs/sylius-packeta-plugin` and rename all classes, namespaces and configurations accordingly, see [UPGRADE-2.0.md](UPGRADE-2.0.md)
+
 ## v3.3.0 (2025-04-08)
 - Support for Sylius 1.14
 - Drop support for Symfony <=6.3

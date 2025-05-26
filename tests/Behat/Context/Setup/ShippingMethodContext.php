@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Context\Setup;
+namespace Tests\ThreeBRS\SyliusPacketaPlugin\Behat\Context\Setup;
 
 use Behat\Behat\Context\Context;
 use Doctrine\ORM\EntityManagerInterface;
 use Sylius\Behat\Service\SharedStorageInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\ShippingMethodInterface;
-use ThreeBRS\SyliusZasilkovnaPlugin\Entity\ZasilkovnaConfig;
-use ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentInterface;
-use ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShippingMethodInterface;
+use ThreeBRS\SyliusPacketaPlugin\Entity\PacketaConfig;
+use ThreeBRS\SyliusPacketaPlugin\Model\PacketaShipmentInterface;
+use ThreeBRS\SyliusPacketaPlugin\Model\PacketaShippingMethodInterface;
 
 final readonly class ShippingMethodContext implements Context
 {
@@ -20,33 +20,33 @@ final readonly class ShippingMethodContext implements Context
     }
 
     /**
-     * @Given /^(this shipping method) has Zásilkovna api key$/
+     * @Given /^(this shipping method) has Packeta api key$/
      */
     public function thisPaymentMethodHasZone(ShippingMethodInterface $shippingMethod)
     {
-        assert($shippingMethod instanceof ZasilkovnaShippingMethodInterface);
+        assert($shippingMethod instanceof PacketaShippingMethodInterface);
 
-        $zasilkovnaConfig = new ZasilkovnaConfig();
-        $zasilkovnaConfig->setApiKey('zasilkovnaApiKeyFolder');
+        $packetaConfig = new PacketaConfig();
+        $packetaConfig->setApiKey('packetaApiKeyFolder');
 
-        $shippingMethod->setZasilkovnaConfig($zasilkovnaConfig);
+        $shippingMethod->setPacketaConfig($packetaConfig);
 
         $this->entityManager->persist($shippingMethod);
         $this->entityManager->flush();
     }
 
     /**
-     * @Given choose Zásilkovna branch ":zasilkovnaName"
+     * @Given choose Packeta branch ":packetaName"
      */
-    public function chooseZasilkovnaBranch(string $zasilkovnaName)
+    public function choosePacketaBranch(string $packetaName)
     {
         $order = $this->sharedStorage->get('order');
         assert($order instanceof OrderInterface);
 
         $shipment = $order->getShipments()->last();
-        assert($shipment instanceof ZasilkovnaShipmentInterface);
+        assert($shipment instanceof PacketaShipmentInterface);
 
-        $shipment->setZasilkovna(['id' => 1, 'place' => $zasilkovnaName]);
+        $shipment->setPacketa(['id' => 1, 'place' => $packetaName]);
 
         $this->entityManager->persist($order);
         $this->entityManager->flush();

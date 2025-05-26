@@ -1,0 +1,2 @@
+imports:
+    - { resource: "@ThreeBRSSyliusPacketaPlugin/Resources/config/config.{yml,yaml}" }

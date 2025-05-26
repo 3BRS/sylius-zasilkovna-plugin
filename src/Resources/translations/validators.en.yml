@@ -1,4 +1,4 @@
 threebrs:
     shop:
         checkout:
-            zasilkovnaBranch: Choose Zásilkovna Branch
+            packetaBranch: Choose Packeta Branch

@@ -2,20 +2,20 @@ threebrs:
     shop:
         checkout:
             complete:
-                zasilkovnaBrach: Zásilkovna branch
+                packetaBrach: Packeta branch
             shippingStep:
-                chooseZasilkovnaBranch: Choose Zásilkovna Branch
+                choosePacketaBranch: Choose Packeta Branch
     admin:
-        zasilkovna:
-            title: Zásilkovna
+        packeta:
+            title: Packeta
             success:
-                import: Zásilkovna branches synchronization was successful.
+                import: Packeta branches synchronization was successful.
             form:
                 optionCountry: Show only pickup points from specific country in the map (leave blank to show all)
-                apiKey: Zásilkovna api key
+                apiKey: Packeta api key
                 senderLabel: Sender label
                 carrierId: Carrier ID
-                syncAction: Sync Zásilkovna branches
+                syncAction: Sync Packeta branches
             export:
-                toZasilkovnaBranch: Zásilkovna Branch
+                toPacketaBranch: Packeta Branch
                 toAddress: To address

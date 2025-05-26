@@ -1,6 +1,6 @@
 parameters:
-    shippingMethodsCodes: ['zasilkovna']
-    threebrs_sylius_zasilkovna_plugin_payment_methods: ['cz', 'pl', 'sk', 'hu', 'ro']
+    shippingMethodsCodes: ['packeta']
+    threebrs_sylius_packeta_plugin_payment_methods: ['cz', 'pl', 'sk', 'hu', 'ro']
 
 services:
     _defaults:
@@ -8,7 +8,7 @@ services:
         autoconfigure: false
         public: false
 
-    ThreeBRS\SyliusZasilkovnaPlugin\Form\Extension\ShipmentZasilkovnaExtension:
+    ThreeBRS\SyliusPacketaPlugin\Form\Extension\ShipmentPacketaExtension:
         arguments:
             - '@sylius.resolver.shipping_methods.default'
             - '@sylius.repository.shipping_method'
@@ -17,25 +17,25 @@ services:
             - name: form.type_extension
               extended_type: Sylius\Bundle\CoreBundle\Form\Type\Checkout\ShipmentType
 
-    ThreeBRS\SyliusZasilkovnaPlugin\Form\Extension\AdminZasilkovnaShippingMethodExtension:
+    ThreeBRS\SyliusPacketaPlugin\Form\Extension\AdminPacketaShippingMethodExtension:
         tags:
             - name: form.type_extension
               extended_type: Sylius\Bundle\ShippingBundle\Form\Type\ShippingMethodType
 
-    ThreeBRS\SyliusZasilkovnaPlugin\Form\Type\ZasilkovnaConfigType:
+    ThreeBRS\SyliusPacketaPlugin\Form\Type\PacketaConfigType:
         tags:
             - name: form.type
         arguments:
-            $countryChoices: '%threebrs_sylius_zasilkovna_plugin_payment_methods%'
-            $dataClass: ThreeBRS\SyliusZasilkovnaPlugin\Entity\ZasilkovnaConfig
+            $countryChoices: '%threebrs_sylius_packeta_plugin_payment_methods%'
+            $dataClass: ThreeBRS\SyliusPacketaPlugin\Entity\PacketaConfig
             $validationGroups: ['sylius']
 
-    ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentExporter:
+    ThreeBRS\SyliusPacketaPlugin\Model\PacketaShipmentExporter:
         public: true
         arguments:
             $currencyConverter: '@sylius.converter.currency'
             $shippingMethodsCodes: '%shippingMethodsCodes%'
         tags:
             - name: threebrs.shipment_exporter_type
-              type: 'zasilkovna'
-              label: 'Zásilkovna'
+              type: 'packeta'
+              label: 'Packeta'

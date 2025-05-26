@@ -4,6 +4,7 @@
 /composer.lock
 /symfony.lock
 /.envrc
+/phpunit_log
 
 /etc/build/*
 !/etc/build/.gitkeep

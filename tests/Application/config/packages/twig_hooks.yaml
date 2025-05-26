@@ -1,6 +1,6 @@
 sylius_twig_hooks:
     hooks:
         'sylius_shop.layout.javascripts':
-            threebrs_sylius_zasilkovna_plugin_javascripts:
-                template: '@ThreeBRSSyliusZasilkovnaPlugin/Shop/_javascripts.html.twig'
+            threebrs_sylius_packeta_plugin_javascripts:
+                template: '@ThreeBRSSyliusPacketaPlugin/Shop/_javascripts.html.twig'
                 priority: 5

@@ -1,14 +1,14 @@
 {
-    "name": "3brs/sylius-zasilkovna-plugin",
+    "name": "3brs/sylius-packeta-plugin",
     "type": "sylius-plugin",
-	"keywords": ["sylius", "sylius-plugin", "zasilkovna", "packeta"],
-    "description": "Zasilkovna plugin for Sylius",
+	"keywords": ["sylius", "sylius-plugin", "zasilkovna", "packeta", "packet", "shipping", "delivery"],
+    "description": "Packeta plugin for Sylius",
     "license": "MIT",
     "require": {
         "ext-json": "*",
         "php": "^8.2",
         "sylius/sylius": "^2.0",
-        "3brs/sylius-shipment-export-plugin": "SLS-5-sylius-2.0-dev"
+        "3brs/sylius-shipment-export-plugin": "1.0"
     },
     "require-dev": {
         "behat/behat": "^v3.19.0",
@@ -72,13 +72,13 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "ThreeBRS\\SyliusZasilkovnaPlugin\\": "src/"
+            "ThreeBRS\\SyliusPacketaPlugin\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\ThreeBRS\\SyliusZasilkovnaPlugin\\": "tests/Application/src/",
-            "Tests\\ThreeBRS\\SyliusZasilkovnaPlugin\\Behat\\": "tests/Behat/"
+            "Tests\\ThreeBRS\\SyliusPacketaPlugin\\": "tests/Application/src/",
+            "Tests\\ThreeBRS\\SyliusPacketaPlugin\\Behat\\": "tests/Behat/"
         }
     },
     "config": {

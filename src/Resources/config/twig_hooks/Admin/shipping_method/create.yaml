@@ -1,6 +1,6 @@
 sylius_twig_hooks:
     hooks:
         'sylius_admin.shipping_method.create.content.form.configuration':
-            zasilkovna:
-                template: '@ThreeBRSSyliusZasilkovnaPlugin/Admin/shipping_method/form/configuration/zasilkovna.html.twig'
+            packeta:
+                template: '@ThreeBRSSyliusPacketaPlugin/Admin/shipping_method/form/configuration/packeta.html.twig'
                 priority: 600 # before 'category', see vendor/sylius/sylius/src/Sylius/Bundle/AdminBundle/Resources/config/app/twig_hooks/shipping_method/create.yaml

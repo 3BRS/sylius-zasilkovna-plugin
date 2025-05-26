@@ -1,0 +1,43 @@
+{% set form = hookable_metadata.context.form %}
+{# @var method Sylius\Component\Core\Model\ShippingMethodInterface #}
+{% set method = hookable_metadata.context.method %}
+
+{# see \ThreeBRS\SyliusPacketaPlugin\Form\Extension\ShipmentPacketaExtension::buildForm #}
+{% set packetaFieldName = 'packeta_' ~ method.code %}
+{% if form.parent.parent[packetaFieldName] is defined and form.parent.parent[packetaFieldName] %}
+	{% set inputId = form.parent.parent[packetaFieldName].vars.id %}
+	{% set labelId = inputId ~ '_title' %}
+
+	{% set packetaOptions = '{}' %}
+	{% if form.parent.parent[packetaFieldName].vars.attr['data-country'] is defined and form.parent.parent[packetaFieldName].vars.attr['data-country'] is not empty %}
+		{% set packetaOptions = '{country: \'' ~ form.parent.parent[packetaFieldName].vars.attr['data-country'] ~ '\'}' %}
+	{% endif %}
+
+	<hr class="my-4"/>
+
+	<div class="d-flex justify-content-center">
+		<button type="button"
+				id="{{ labelId }}"
+				class="btn btn-outline-secondary"
+				onclick="Packeta.Widget.pick(
+						'{{ form.parent.parent[packetaFieldName].vars.attr['data-api-key'] }}',
+						showSelectedPickupPoint.bind(this, '{{ inputId }}', '{{ labelId }}'),
+				{{ packetaOptions }})"
+				value="">
+			{% if form.parent.parent[packetaFieldName].vars.attr['data-label'] is defined and form.parent.parent[packetaFieldName].vars.attr['data-label'] is not empty %}
+				{{ form.parent.parent[packetaFieldName].vars.attr['data-label'] }}
+			{% else %}
+				{{ 'threebrs.shop.checkout.shippingStep.choosePacketaBranch'|trans }}
+			{% endif %}
+		</button>
+	</div>
+
+	<hr class="my-4"/>
+
+	{{ form_widget(form.parent.parent[packetaFieldName]) }}
+{% endif %}
+
+{% if not form.parent.parent.packeta.isRendered %}
+	{# TODO needed? #}
+	{{ form_widget(form.parent.parent.packeta) }}
+{% endif %}

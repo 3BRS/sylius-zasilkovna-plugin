@@ -1,30 +1,31 @@
 {% set order = hookable_metadata.context.resource %}
 
-{% set zasilkovna = order.shipments.last.zasilkovna %}
-{% if zasilkovna %}
+{% set packeta = order.shipments.last.packeta %}
+
+{% if packeta %}
     <div>
         <strong>{{ 'sylius.ui.shipping_address'|trans }}:</strong>
     </div>
     <div class="mb-3" {{ sylius_test_html_attribute('shipping-address') }}>
         <address>
-            {{ 'threebrs.shop.checkout.complete.zasilkovnaBrach'|trans }}<br>
+            {{ 'threebrs.shop.checkout.complete.packetaBrach'|trans }}<br>
             <strong>
-                <a href="{{ zasilkovna['url'] is defined ? zasilkovna['url'] : 'https://www.zasilkovna.cz/pobocky/' ~ zasilkovna['id'] }}"
+                <a href="{{ packeta['url'] is defined ? packeta['url'] : 'https://www.packeta.cz/pobocky/' ~ packeta['id'] }}"
                    target="_blank" rel="noopener">
-                    {{ zasilkovna['place'] is defined ? zasilkovna['place'] : '' }}
+                    {{ packeta['place'] is defined ? packeta['place'] : '' }}
                 </a>
             </strong>
             <br>
-            {% if zasilkovna['street'] is defined and zasilkovna['city'] is defined and zasilkovna['zip'] is defined %}
-                {{ zasilkovna['street'] }}<br/>
-                {{ zasilkovna['city'] }}, {{ zasilkovna['zip'] }}<br/>
-            {% elseif zasilkovna['nameStreet'] is defined %}
-                {{ zasilkovna['nameStreet'] }}<br/>
-            {% elseif zasilkovna['name'] is defined %}
-                {{ zasilkovna['name'] }}<br/>
+            {% if packeta['street'] is defined and packeta['city'] is defined and packeta['zip'] is defined %}
+                {{ packeta['street'] }}<br/>
+                {{ packeta['city'] }}, {{ packeta['zip'] }}<br/>
+            {% elseif packeta['nameStreet'] is defined %}
+                {{ packeta['nameStreet'] }}<br/>
+            {% elseif packeta['name'] is defined %}
+                {{ packeta['name'] }}<br/>
             {% endif %}
-            {% if zasilkovna['country'] is defined %}
-                {{ zasilkovna['country']|upper|sylius_country_name|upper }}
+            {% if packeta['country'] is defined %}
+                {{ packeta['country']|upper|sylius_country_name|upper }}
             {% endif %}
         </address>
     </div>

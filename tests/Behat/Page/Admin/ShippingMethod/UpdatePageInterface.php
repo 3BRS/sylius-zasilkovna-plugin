@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\ThreeBRS\SyliusZasilkovnaPlugin\Behat\Page\Admin\ShippingMethod;
+namespace Tests\ThreeBRS\SyliusPacketaPlugin\Behat\Page\Admin\ShippingMethod;
 
 use Behat\Mink\Element\NodeElement;
 use Sylius\Behat\Page\Admin\Channel\UpdatePageInterface as BaseUpdatePageInterface;
@@ -15,7 +15,7 @@ interface UpdatePageInterface extends BaseUpdatePageInterface
 
     public function changeInput(string $elementName, ?string $value): void;
 
-    public function getZasilkovnaDownloadButton(): NodeElement;
+    public function getPacketaDownloadButton(): NodeElement;
 
-    public function iSeeZasilkovnaBranchInsteadOfShippingAddress(): bool;
+    public function iSeePacketaBranchInsteadOfShippingAddress(): bool;
 }

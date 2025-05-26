@@ -1,2 +1,0 @@
-imports:
-    - { resource: "@ThreeBRSSyliusZasilkovnaPlugin/Resources/config/config.{yml,yaml}" }

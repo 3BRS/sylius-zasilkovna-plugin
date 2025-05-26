@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Tests\ThreeBRS\SyliusZasilkovnaPlugin\Entity;
+namespace Tests\ThreeBRS\SyliusPacketaPlugin\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Core\Model\Shipment as BaseShipment;
-use ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentInterface;
-use ThreeBRS\SyliusZasilkovnaPlugin\Model\ZasilkovnaShipmentTrait;
+use ThreeBRS\SyliusPacketaPlugin\Model\PacketaShipmentInterface;
+use ThreeBRS\SyliusPacketaPlugin\Model\PacketaShipmentTrait;
 
 #[ORM\MappedSuperclass]
 #[ORM\Table(name: 'sylius_shipment')]
-class Shipment extends BaseShipment implements ZasilkovnaShipmentInterface
+class Shipment extends BaseShipment implements PacketaShipmentInterface
 {
-    use ZasilkovnaShipmentTrait;
+    use PacketaShipmentTrait;
 }
