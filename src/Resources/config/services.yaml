@@ -1,6 +1,6 @@
 parameters:
     shippingMethodsCodes: ['packeta']
-    threebrs_sylius_packeta_plugin_payment_methods: ['cz', 'pl', 'sk', 'hu', 'ro']
+    threebrs_sylius_packeta_plugin_payment_methods: ['cz', 'sk', 'hu', 'de', 'ro', 'pl', 'sl' ]
 
 services:
     _defaults:
