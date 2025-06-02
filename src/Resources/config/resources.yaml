@@ -1,12 +1,3 @@
-sylius_ui:
-    # TODO
-#    events:
-#        sylius.shop.layout.javascripts:
-#            blocks:
-#                threebrs_sylius.sylius_packeta_plugin.shop.layout.javascripts:
-#                    template: "@ThreeBRSSyliusPacketaPlugin/Shop/_javascripts.html.twig"
-#                    priority: 5
-
 sylius_resource:
     resources:
         threebrs_packeta_plugin.packeta_config:
